@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\transaksi;
 use Illuminate\Http\Request;
+use Validator;
 
 class TransaksiController extends Controller
 {
@@ -14,9 +15,28 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        $transaksi = Transaksi::all();
+        return view('transaksi.index', compact('transaksi'));
     }
 
+    public function data()
+    {
+        $transaksi = Transaksi::orderBy('id', 'desc')->get();
+
+        return datatables()
+            ->of($transaksi)
+            ->addIndexColumn()
+            ->addColumn('aksi', function($transaksi){
+                return '
+                <div class="btn-group">
+                    <button onclick="editData(`' .route('transaksi.update', $transaksi->id). '`)" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
+                    <button onclick="deleteData(`' .route('transaksi.destroy', $transaksi->id). '`)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                </div>
+                ';
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +55,43 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'id_outlet' => 'required',
+            'kode_invoice' => 'required',
+            'id_member' => 'required',
+            'tgl' => 'required',
+            'batas_waktu' => 'required',
+            'tgl_bayar' => 'required',
+            'biaya_tambahan' => 'required',
+            'diskon' => 'required',
+            'status' => 'required',
+            'dibayar' => 'required',
+            'id_user' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(), 422);
+        }
+
+        $transaksi = Transaksi::create([
+            'id_outlet' => $request->id_outlet,
+            'kode_invoice' => $request->kode_invoice,
+            'id_member' => $request->id_member,
+            'tgl' => $request->tgl,
+            'batas_waktu' => $request->batas_waktu,
+            'tgl_bayar' => $request->tgl_bayar,
+            'biaya_tambahan' => $request->biaya_tambahan,
+            'diskon' => $request->diskon,
+            'status' => $request->status,
+            'dibayar' => $request->dibayar,
+            'id_user' => $request->id_user,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Berhasil Disimpan',
+            'data' => $transaksi
+        ]);
     }
 
     /**
@@ -46,7 +102,8 @@ class TransaksiController extends Controller
      */
     public function show(transaksi $transaksi)
     {
-        //
+        $transaksi = Transaksi::find($id);
+        return response()->json($transaksi);
     }
 
     /**
@@ -57,7 +114,8 @@ class TransaksiController extends Controller
      */
     public function edit(transaksi $transaksi)
     {
-        //
+        $transaksi = Transaksi::find($id);
+        return view('transaksi.form', compact('transaksi'));
     }
 
     /**
@@ -69,7 +127,11 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, transaksi $transaksi)
     {
-        //
+        $transaksi = Transaksi::find($id);
+        $transaksi->nama = $request->nama;
+        $transaksi->update();
+
+        return response()->json('Data Berhasil Disimpan');
     }
 
     /**
@@ -80,6 +142,9 @@ class TransaksiController extends Controller
      */
     public function destroy(transaksi $transaksi)
     {
-        //
+        $transaksi = Transaksi::find($id);
+        $transaksi->delete();
+
+        return redirect('transaksi');
     }
 }

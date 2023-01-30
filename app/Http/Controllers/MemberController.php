@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\member;
 use Illuminate\Http\Request;
+use Validator;
 
 class MemberController extends Controller
 {
@@ -14,7 +15,27 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        $member = Member::all();
+        return view('member.index', compact('member'));
+    }
+
+    public function data()
+    {
+        $member = Member::orderBy('id', 'desc')->get();
+
+        return datatables()
+            ->of($member)
+            ->addIndexColumn()
+            ->addColumn('aksi', function($member){
+                return '
+                <div class="btn-group">
+                    <button onclick="editData(`' .route('member.update', $member->id). '`)" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
+                    <button onclick="deleteData(`' .route('member.destroy', $member->id). '`)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                </div>
+                ';
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
     }
 
     /**
@@ -35,7 +56,29 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'alamat' => 'required',
+            'jenis_kelamin' => 'required',
+            'tlp' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(), 422);
+        }
+
+        $member = Member::create([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tlp' => $request->tlp,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Berhasil Disimpan',
+            'data' => $member
+        ]);
     }
 
     /**
@@ -44,9 +87,10 @@ class MemberController extends Controller
      * @param  \App\Models\member  $member
      * @return \Illuminate\Http\Response
      */
-    public function show(member $member)
+    public function show($id)
     {
-        //
+        $member = Member::find($id);
+        return response()->json($member);
     }
 
     /**
@@ -55,9 +99,10 @@ class MemberController extends Controller
      * @param  \App\Models\member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit(member $member)
+    public function edit($id)
     {
-        //
+        $member = Member::find($id);
+        return view('member.form', compact('member'));
     }
 
     /**
@@ -67,9 +112,16 @@ class MemberController extends Controller
      * @param  \App\Models\member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, member $member)
+    public function update(Request $request, $id)
     {
-        //
+        $member = Member::find($id);
+        $member->nama = $request->nama;
+        $member->alamat = $request->alamat;
+        $member->jenis_kelamin = $request->jenis_kelamin;
+        $member->tlp = $request->tlp;
+        $member->update();
+
+        return response()->json('Data Berhasil Disimpan');
     }
 
     /**
@@ -78,8 +130,11 @@ class MemberController extends Controller
      * @param  \App\Models\member  $member
      * @return \Illuminate\Http\Response
      */
-    public function destroy(member $member)
+    public function destroy($id)
     {
-        //
+        $member = Member::find($id);
+        $member->delete();
+
+        return redirect('member');
     }
 }

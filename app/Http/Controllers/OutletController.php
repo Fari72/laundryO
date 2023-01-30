@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\outlet;
 use Illuminate\Http\Request;
+use Validator;
 
 class OutletController extends Controller
 {
@@ -14,9 +15,28 @@ class OutletController extends Controller
      */
     public function index()
     {
-        //
+        $outlet = Outlet::all();
+        return view('outlet.index', compact('outlet'));
     }
 
+    public function data()
+    {
+        $outlet = Outlet::orderBy('id', 'desc')->get();
+
+        return datatables()
+            ->of($outlet)
+            ->addIndexColumn()
+            ->addColumn('aksi', function($outlet){
+                return '
+                <div class="btn-group">
+                    <button onclick="editData(`' .route('outlet.update', $outlet->id). '`)" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
+                    <button onclick="deleteData(`' .route('outlet.destroy', $outlet->id). '`)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                </div>
+                ';
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +55,25 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'alamat' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(), 422);
+        }
+
+        $outlet = Outlet::create([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Berhasil Disimpan',
+            'data' => $outlet
+        ]);
     }
 
     /**
@@ -44,9 +82,10 @@ class OutletController extends Controller
      * @param  \App\Models\outlet  $outlet
      * @return \Illuminate\Http\Response
      */
-    public function show(outlet $outlet)
+    public function show($id)
     {
-        //
+        $outlet = Outlet::find($id);
+        return response()->json($outlet);
     }
 
     /**
@@ -55,9 +94,10 @@ class OutletController extends Controller
      * @param  \App\Models\outlet  $outlet
      * @return \Illuminate\Http\Response
      */
-    public function edit(outlet $outlet)
+    public function edit($id)
     {
-        //
+        $outlet = Outlet::find($id);
+        return view('outlet.form', compact('outlet'));
     }
 
     /**
@@ -67,9 +107,14 @@ class OutletController extends Controller
      * @param  \App\Models\outlet  $outlet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, outlet $outlet)
+    public function update(Request $request, $id)
     {
-        //
+        $outlet = Outlet::find($id);
+        $outlet->nama = $request->nama;
+        $outlet->alamat = $request->alamat;
+        $outlet->update();
+
+        return response()->json('Data Berhasil Disimpan');
     }
 
     /**
@@ -80,6 +125,9 @@ class OutletController extends Controller
      */
     public function destroy(outlet $outlet)
     {
-        //
+        $outlet = Outlet::find($id);
+        $outlet->delete();
+
+        return redirect('outlet');
     }
 }
