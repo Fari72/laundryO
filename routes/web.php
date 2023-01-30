@@ -5,10 +5,15 @@ use PharIo\Manifest\AuthorCollection;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\{
   DashboardController,
-  UserController
+  UserController,
+  TransaksiController,
+  Detail_transaksiController,
+  MemberController,
+  OutletController,
+  PaketController
 };
 
-
+// login
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/postlogin', [AuthController::class, 'postlogin'])->name('postlogin');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -19,5 +24,20 @@ Route::group(['middleware' => 'auth', 'checkRole:admin'], function () {
 
   Route::resource('/user', UserController::class);
   Route::get('/user/{id}/profile', [UserController::class, 'profile'])->name('user.profile');
-  // Route::post('/profile/{id}', [UserController::class, 'update'])->name('profile.update');
+  Route::post('/profile/{id}', [UserController::class, 'update'])->name('profile.update');
 });
+
+route::get('/transaksi/data', [TransaksiController::class, 'data'])->name('transaksi.data');
+route::resource('/transaksi', TransaksiController::class);
+
+route::get('/detail_transaksi/data', [Detail_transaksiController::class, 'data'])->name('detail_transaksi.data');
+route::resource('/detail_transaksi', Detail_transaksiController::class);
+
+route::get('/member/data', [MemberController::class, 'data'])->name('member.data');
+route::resource('/member', MemberController::class);
+
+route::get('/outlet/data', [OutletController::class, 'data'])->name('outlet.data');
+route::resource('/outlet', OutletController::class);
+
+route::get('/paket/data', [PaketController::class, 'data'])->name('paket.data');
+route::resource('/paket', PaketController::class);
