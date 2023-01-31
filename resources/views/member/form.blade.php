@@ -15,6 +15,15 @@
 
                         {{-- Add Mapel --}}
                         <div class="my-1">
+                            <label class="mb-2" for="id_member">Member</label>
+                            <input type="text" name="id_member" id="id_member" value="{{ old('id_member')}}" class="form-control @error('id_member') is-invalid @enderror">
+                            @error('id_member')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="my-1">
                             <label class="mb-2" for="nama">Nama</label>
                             <input type="text" name="nama" id="nama" value="{{ old('nama')}}" class="form-control @error('nama') is-invalid @enderror">
                             @error('nama')
@@ -46,7 +55,7 @@
                         
                         <div class="my-1">
                             <label class="mb-2" for="tlp">Telepone</label>
-                            <input type="text" name="tlp" id="tlp" value="{{ old('tlp')}}" class="form-control @error('tlp') is-invalid @enderror">
+                            <input type="integer" name="tlp" id="tlp" value="{{ old('tlp')}}" class="form-control @error('tlp') is-invalid @enderror">
                             @error('tlp')
                                 <div class="text-danger">
                                     {{ $message }}

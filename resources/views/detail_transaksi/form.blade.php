@@ -42,7 +42,7 @@
 
                         <div class="my-1">
                             <label class="mb-2" for="qty">QTY</label>
-                            <input type="double" name="qty" id="qty" value="{{ old('qty')}}" class="form-control @error('qty') is-invalid @enderror">
+                            <input type="string" name="qty" id="qty" value="{{ old('qty')}}" class="form-control @error('qty') is-invalid @enderror">
                             @error('qty')
                                 <div class="text-danger">
                                     {{ $message }}
