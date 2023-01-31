@@ -19,7 +19,7 @@
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>#</th>
+              <th>No</th>
               <th>Nama</th>
               <th>Email</th>
               <th>Role</th>
@@ -35,8 +35,12 @@
                 <td>
                   @if($item->role == 'admin')
                     <span class="badge badge-danger">{{ $item->role }}</span>                    
-                  @else
+                  @elseif($item->role == 'kasir')
                     <span class="badge badge-success">{{ $item->role }}</span>
+                  @elseif($item->role == 'owner')
+                  <span class="badge badge-warning">{{ $item->role }}</span>
+                  @else
+                  <span class="badge badge-white">{{ $item->role }}</span>
                   @endif
                 </td>
               </tr>

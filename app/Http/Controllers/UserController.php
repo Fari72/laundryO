@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\outlet;
+// use App\Models\outlet;
+// use App\Models\transaksi;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -17,7 +18,8 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
-        $outlet = Outlet::all();
+        // $outlet = Outlet::all();
+        // $transaksi = Transaksi::all();
 
         // dd($user);
         return view('user.index', compact('user'));
