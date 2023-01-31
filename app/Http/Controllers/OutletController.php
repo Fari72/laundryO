@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\outlet;
+use App\Models\paket;
+use App\Models\User;
+use App\Models\transaksi;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -16,7 +19,10 @@ class OutletController extends Controller
     public function index()
     {
         $outlet = Outlet::all();
-        return view('outlet.index', compact('outlet'));
+        $paket = Paket::all();
+        $user = User::all();
+        $transaksi = Transaksi::all();
+        return view('outlet.index', compact('outlet','paket','user','transaksi'));
     }
 
     public function data()

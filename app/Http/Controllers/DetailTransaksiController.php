@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\detail_transaksi;
+use App\Models\transaksi;
+use App\Models\paket;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -16,7 +18,9 @@ class DetailTransaksiController extends Controller
     public function index()
     {
         $detail_transaksi = Detail_transaksi::all();
-        return view('detail_transaksi.index', compact('detail_transaksi'));
+        $transaksi = Transaksi::all();
+        $paket = Paket::all();
+        return view('detail_transaksi.index', compact('detail_transaksi','transaksi','paket'));
     }
 
     public function data()

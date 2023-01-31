@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\member;
+use App\Models\transaksi;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -16,7 +17,8 @@ class MemberController extends Controller
     public function index()
     {
         $member = Member::all();
-        return view('member.index', compact('member'));
+        $transaksi = Transaksi::all();
+        return view('member.index', compact('member','transaksi'));
     }
 
     public function data()
