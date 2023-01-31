@@ -31,7 +31,7 @@
               <div class="card-header"><h4>Register</h4></div>
 
               <div class="card-body">
-                <form method="POST">
+                <form action="{{route('simpanRegister')}}" method="POST">
                   <div class="form-group col-12">
                     <label for="nama">Nama</label>
                     <input id="nama" name="nama" type="text" class="form-control" name="frist_name" autofocus>
@@ -51,6 +51,12 @@
                       <div id="pwindicator" class="pwindicator">
                         <div class="bar"></div>
                         <div class="label"></div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="container"></div>                       
+                          <a href="{{route('login')}}" class="nav-link">Sudah Memiliki Akun</a>
                       </div>
                     </div>
 
