@@ -26,7 +26,7 @@ class TransaksiController extends Controller
         $outlet = Outlet::all();
         $member = Member::all();
         $user = User::all();
-        return view('transaksi.index', compact('transaksi','detail_transaksi','paket','outlet','member','user'));
+        return view('transaksi.index', compact('detail_transaksi','paket','outlet','member','user'));
     }
 
     public function data()

@@ -11,7 +11,7 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-primary">
-            <i class="far fa-user"></i>
+          <i class="fas fa-user"></i>
         </div>
 
         <div class="card-wrap">
@@ -29,12 +29,12 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-danger">
-            <i class="far fa-newspaper"></i>
+          <i class="fa-solid fa-cash-register"></i>
         </div>
 
         <div class="card-wrap">
             <div class="card-header">
-              Total Data
+              Total Transaksi
             </div>
 
             <div class="card-body">
@@ -47,16 +47,16 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-warning">
-            <i class="far fa-file"></i>
+          <i class="fa-solid fa-scroll"></i>
         </div>
 
         <div class="card-wrap">
             <div class="card-header">
-              Total Report
+              Total Laporan
             </div>
 
             <div class="card-body">
-              {{ $ }}
+              {{ $detail_transaksi->count(); }}
             </div>
           </div>
       </div>
@@ -65,16 +65,52 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-success">
-            <i class="fas fa-box"></i>
+          <i class="fa-solid fa-box"></i>
         </div>
 
         <div class="card-wrap">
             <div class="card-header">
-              Total Barang
+              Total Paket
             </div>
 
             <div class="card-body">
-              10
+              {{ $paket->count(); }}
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+      <div class="card card-statistic-1">
+        <div class="card-icon bg-danger">
+          <i class="fa-solid fa-users"></i>
+        </div>
+
+        <div class="card-wrap">
+            <div class="card-header">
+              Total Member
+            </div>
+
+            <div class="card-body">
+              {{ $member->count(); }}
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+      <div class="card card-statistic-1">
+        <div class="card-icon bg-success">
+          <i class="fa-solid fa-users"></i>
+        </div>
+
+        <div class="card-wrap">
+            <div class="card-header">
+              Total Outlet
+            </div>
+
+            <div class="card-body">
+              {{ $outlet->count(); }}
             </div>
           </div>
       </div>

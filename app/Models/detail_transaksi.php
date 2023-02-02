@@ -9,7 +9,7 @@ class detail_transaksi extends Model
 {
     use HasFactory;
 
-    protected $table = 'detail_transaksi';
+    protected $table = 'detailtransaksi';
     protected $guarded = [];
 
     public function paket()

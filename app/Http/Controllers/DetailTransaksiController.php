@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\detail_transaksi;
+use App\Models\Detail_transaksi;
 use App\Models\Transaksi;
 use App\Models\Paket;
 use Illuminate\Http\Request;
@@ -20,7 +20,7 @@ class DetailTransaksiController extends Controller
         $detail_transaksi = Detail_transaksi::all();
         $transaksi = Transaksi::all();
         $paket = Paket::all();
-        return view('detail_transaksi.index', compact('detail_transaksi','transaksi','paket'));
+        return view('detail_transaksi.index', compact('transaksi','paket'));
     }
 
     public function data()

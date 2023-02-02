@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\outlet;
-use App\Models\transaksi;
+use App\Models\Outlet;
+use App\Models\Transaksi;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller

@@ -22,7 +22,7 @@ class OutletController extends Controller
         $paket = Paket::all();
         $user = User::all();
         $transaksi = Transaksi::all();
-        return view('outlet.index', compact('outlet','paket','user','transaksi'));
+        return view('outlet.index', compact('paket','user','transaksi'));
     }
 
     public function data()

@@ -18,7 +18,7 @@ class MemberController extends Controller
     {
         $member = Member::all();
         $transaksi = Transaksi::all();
-        return view('member.index', compact('member','transaksi'));
+        return view('member.index', compact('transaksi'));
     }
 
     public function data()

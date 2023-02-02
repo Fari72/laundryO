@@ -33,8 +33,8 @@ Route::group(['middleware' => 'auth', 'checkRole:admin'], function () {
 route::get('/transaksi/data', [TransaksiController::class, 'data'])->name('transaksi.data');
 route::resource('/transaksi', TransaksiController::class);
 
-route::get('/detail_transaksi/data', [Detail_transaksiController::class, 'data'])->name('detail_transaksi.data');
-route::resource('/detail_transaksi', Detail_transaksiController::class);
+route::get('/detail_transaksi/data', [DetailtransaksiController::class, 'data'])->name('detailtransaksi.data');
+route::resource('/detail_transaksi', DetailtransaksiController::class);
 
 route::get('/member/data', [MemberController::class, 'data'])->name('member.data');
 route::resource('/member', MemberController::class);
