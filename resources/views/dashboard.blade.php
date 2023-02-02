@@ -20,7 +20,7 @@
             </div>
 
             <div class="card-body">
-              10
+              {{ $user->count() }}
             </div>
           </div>
       </div>
