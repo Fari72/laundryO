@@ -38,7 +38,7 @@
             </div>
 
             <div class="card-body">
-              10
+              {{ $transaksi->count(); }}
             </div>
           </div>
       </div>
@@ -56,7 +56,7 @@
             </div>
 
             <div class="card-body">
-              10
+              {{ $ }}
             </div>
           </div>
       </div>

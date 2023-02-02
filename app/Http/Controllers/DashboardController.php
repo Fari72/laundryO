@@ -8,6 +8,7 @@ use App\Models\Paket;
 use App\Models\Member;
 use App\Models\Outlet;
 use App\Models\Transaksi;
+use App\Models\Detail_transaksi;
 
 class DashboardController extends Controller
 {
@@ -18,6 +19,7 @@ class DashboardController extends Controller
         $member = Member::all();
         $outlet = Outlet::all();
         $transaksi = Transaksi::all();
-        return view('dashboard', compact('user','paket','member','outlet',('transaksi')));
+        $detail_transaksi = Detail_transaksi::all();
+        return view('dashboard', compact('user','paket','member','outlet','detail_transaksi',('transaksi')));
     }
 }
