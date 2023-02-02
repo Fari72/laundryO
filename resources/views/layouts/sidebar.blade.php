@@ -4,7 +4,7 @@
       <a href="{{route('dashboard.index')}}">LaundryO</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-      <a href="{{route('dashboard.index')}}">LurO</a>
+      <a href="{{route('dashboard.index')}}">Lau</a>
     </div>
     <ul class="sidebar-menu">
       <li class="menu-header">Dashboard</li>
