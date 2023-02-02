@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('member', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('name');
             $table->text('alamat');
             $table->enum('jenis_kelamin',['L','P']);
             $table->integer('tlp');

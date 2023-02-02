@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('paket', function (Blueprint $table) {
             $table->id();
-            $table->integer('outlet');
+            $table->integer('id_outlet');
             $table->enum('jenis',['kiloan','selimut','bed_cover','kaos','lain']);
             $table->string('nama_paket');
             $table->integer('harga');
