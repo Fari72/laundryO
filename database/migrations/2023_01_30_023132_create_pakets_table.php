@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('paket', function (Blueprint $table) {
             $table->id();
-            $table->int('outlet');
+            $table->integer('outlet');
             $table->enum('jenis',['kiloan','selimut','bed_cover','kaos','lain']);
             $table->string('nama_paket');
-            $table->int('harga');
+            $table->integer('harga');
             $table->timestamps();
         });
     }

@@ -14,18 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('transaksi', function (Blueprint $table) {
-            $table->int('id');
-            $table->int('id_outlet');
-            $table->int('kode_invoice');
-            $table->int('id_member');
+            $table->id();
+            $table->integer('id_outlet');
+            $table->integer('kode_invoice');
+            $table->integer('id_member');
             $table->datetime('tgl');
             $table->datetime('batas_waktu');
             $table->datetime('tgl_bayar');
             $table->datetime('biaya_tambahan');
-            $table->int('diskon');
+            $table->integer('diskon');
             $table->enum('status',['baru','proses','selesai','diambil']);
             $table->enum('dibayar',['dibayar','belum_dibayar']);
-            $table->int('id_user');
+            $table->integer('id_user');
             $table->timestamps();
         });
     }
