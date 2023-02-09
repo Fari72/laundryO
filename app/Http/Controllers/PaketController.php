@@ -20,7 +20,7 @@ class PaketController extends Controller
         $paket = Paket::all();
         $outlet = Outlet::all();
         $detailtransaksi = Detailtransaksi::all();
-        return view('paket.index', compact('detailtransaksi','outlet'));
+        return view('paket.index', compact('paket','detailtransaksi','outlet'));
     }
 
     public function data()
