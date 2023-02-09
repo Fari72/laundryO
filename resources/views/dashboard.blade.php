@@ -56,7 +56,7 @@
             </div>
 
             <div class="card-body">
-              {{ $detail_transaksi->count(); }}
+              {{-- {{ $detailtransaksi->count(); }} --}}
             </div>
           </div>
       </div>

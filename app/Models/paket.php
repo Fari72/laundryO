@@ -12,9 +12,9 @@ class paket extends Model
     protected $table = 'paket';
     protected $guarded = [];
 
-    public function detail_transaksi()
+    public function detailtransaksi()
     {
-        return $this->belongsTo(Detail_transaksi::class);
+        return $this->belongsTo(Detailtransaksi::class);
     }
     public function outlet()
     {

@@ -7,7 +7,7 @@ use App\Http\Controllers\{
   DashboardController,
   UserController,
   TransaksiController,
-  Detail_transaksiController,
+  DetailtransaksiController,
   MemberController,
   OutletController,
   PaketController
@@ -16,7 +16,6 @@ use App\Http\Controllers\{
 // login
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/postlogin', [AuthController::class, 'postlogin'])->name('postlogin');
-Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -30,11 +29,11 @@ Route::group(['middleware' => 'auth', 'checkRole:admin'], function () {
   Route::post('/profile/{id}', [UserController::class, 'update'])->name('profile.update');
 });
 
+route::get('/detailtransaksi/data', [DetailtransaksiController::class, 'data'])->name('detailtransaksi.data');
+route::resource('/detailtransaksi', DetailtransaksiController::class);
+
 route::get('/transaksi/data', [TransaksiController::class, 'data'])->name('transaksi.data');
 route::resource('/transaksi', TransaksiController::class);
-
-route::get('/detail_transaksi/data', [DetailtransaksiController::class, 'data'])->name('detailtransaksi.data');
-route::resource('/detail_transaksi', DetailtransaksiController::class);
 
 route::get('/member/data', [MemberController::class, 'data'])->name('member.data');
 route::resource('/member', MemberController::class);

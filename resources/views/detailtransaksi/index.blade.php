@@ -51,7 +51,7 @@
     </div>
 </section>
 
-@include('detail_transaksi.form')
+@include('detailtransaksi.form')
 
 @endsection
 
@@ -64,7 +64,7 @@ $(function() {
         proccesing: true,
         autowidth: false,
         ajax: {
-            url: '{{ route('detail_transaksi.data') }}'
+            url: '{{ route('detailtransaksi.data') }}'
         },
         columns: [
             {data: 'DT_RowIndex'},

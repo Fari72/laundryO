@@ -47,8 +47,8 @@
                         <label class="mt-2" for="id_member">Nama Member</label>
                         <select type="text" name="id_member" id="id_member" class="form-control @error('id_member') is-invalid @enderror">
                             <option selected>Pilih...</option>
-                            @foreach($member as $member)
-                            <option value="{{$member->id}}">{{$member->nama}}</option>
+                            @foreach($member as $item)
+                            <option value="{{$item->id}}">{{$item->nama}}</option>
                             @endforeach
                         @error('id_member')
                             <div class="text-danger">

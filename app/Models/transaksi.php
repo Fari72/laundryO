@@ -28,8 +28,8 @@ class transaksi extends Model
     {
         return $this->belongsTo(Member::class);
     }
-    public function detail_transaksi()
+    public function detailtransaksi()
     {
-        return $this->belongsTo(Detail_transaksi::class);
+        return $this->belongsTo(Detailtransaksi::class);
     }
 }

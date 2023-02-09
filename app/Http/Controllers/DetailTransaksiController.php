@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Detail_transaksi;
+use App\Models\Detailtransaksi;
 use App\Models\Transaksi;
 use App\Models\Paket;
 use Illuminate\Http\Request;
@@ -17,24 +17,24 @@ class DetailTransaksiController extends Controller
      */
     public function index()
     {
-        $detail_transaksi = Detail_transaksi::all();
+        $detailtransaksi = Detailtransaksi::all();
         $transaksi = Transaksi::all();
         $paket = Paket::all();
-        return view('detail_transaksi.index', compact('transaksi','paket'));
+        return view('detailtransaksi.index', compact('transaksi','paket'));
     }
 
     public function data()
     {
-        $detail_transaksi = Detail_transaksi::orderBy('id', 'desc')->get();
+        $detailtransaksi = Detailtransaksi::orderBy('id', 'desc')->get();
 
         return datatables()
-            ->of($detail_transaksi)
+            ->of($detailtransaksi)
             ->addIndexColumn()
-            ->addColumn('aksi', function($detail_transaksi){
+            ->addColumn('aksi', function($detailtransaksi){
                 return '
                 <div class="btn-group">
-                    <button onclick="editData(`' .route('detail_transaksi.update', $detail_transaksi->id). '`)" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
-                    <button onclick="deleteData(`' .route('detail_transaksi.destroy', $detail_transaksi->id). '`)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    <button onclick="editData(`' .route('detailtransaksi.update', $detailtransaksi->id). '`)" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
+                    <button onclick="deleteData(`' .route('detailtransaksi.destroy', $detailtransaksi->id). '`)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                 </div>
                 ';
             })
@@ -70,7 +70,7 @@ class DetailTransaksiController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $detail_transaksi = Detail_transaksi::create([
+        $detailtransaksi = Detailtransaksi::create([
             'id_transaksi' => $request->id_transaksi,
             'id_paket' => $request->id_paket,
             'qty' => $request->qty,
@@ -80,50 +80,50 @@ class DetailTransaksiController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Data Berhasil Disimpan',
-            'data' => $detail_transaksi
+            'data' => $detailtransaksi
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\detail_transaksi  $detail_transaksi
+     * @param  \App\Models\detailtransaksi  $detailtransaksi
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $detail_transaksi = Detail_transaksi::find($id);
-        return response()->json($detail_transaksi);
+        $detailtransaksi = Detailtransaksi::find($id);
+        return response()->json($detailtransaksi);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\detail_transaksi  $detail_transaksi
+     * @param  \App\Models\detailtransaksi  $detailtransaksi
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $detail_transaksi = Detail_transaksi::find($id);
-        return view('detail_transaksi.form', compact('detail_transaksi'));
+        $detailtransaksi = Detailtransaksi::find($id);
+        return view('detailtransaksi.form', compact('detailtransaksi'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\detail_transaksi  $detail_transaksi
+     * @param  \App\Models\detailtransaksi  $detailtransaksi
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $detail_transaksi = Detail_transaksi::find($id);
-        $detail_transaksi->nama = $request->nama;
-        $detail_transaksi->id_transaksi = $request->id_transaksi;
-        $detail_transaksi->id_paket = $request->id_paket;
-        $detail_transaksi->qty = $request->qty;
-        $detail_transaksi->keterangan = $request->keterangan;
-        $detail_transaksi->update();
+        $detailtransaksi = Detailtransaksi::find($id);
+        $detailtransaksi->nama = $request->nama;
+        $detailtransaksi->id_transaksi = $request->id_transaksi;
+        $detailtransaksi->id_paket = $request->id_paket;
+        $detailtransaksi->qty = $request->qty;
+        $detailtransaksi->keterangan = $request->keterangan;
+        $detailtransaksi->update();
 
         return response()->json('Data Berhasil Disimpan');
     }
@@ -131,14 +131,14 @@ class DetailTransaksiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\detail_transaksi  $detail_transaksi
+     * @param  \App\Models\detailtransaksi  $detailtransaksi
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $detail_transaksi = Detail_transaksi::find($id);
-        $detail_transaksi->delete();
+        $detailtransaksi = Detailtransaksi::find($id);
+        $detailtransaksi->delete();
 
-        return redirect('detail_transaksi');
+        return redirect('detailtransaksi');
     }
 }

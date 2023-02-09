@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\paket;
-use App\Models\detail_transaksi;
 use App\Models\outlet;
+use App\Models\detailtransaksi;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -18,9 +18,9 @@ class PaketController extends Controller
     public function index()
     {
         $paket = Paket::all();
-        $detail_transaksi = Detail_transaksi::all();
         $outlet = Outlet::all();
-        return view('paket.index', compact('detail_transaksi','outlet'));
+        $detailtransaksi = Detailtransaksi::all();
+        return view('paket.index', compact('detailtransaksi','outlet'));
     }
 
     public function data()

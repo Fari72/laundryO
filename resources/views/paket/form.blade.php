@@ -47,8 +47,8 @@
                         <label class="mt-2" for="nama_paket">Jenis Paket</label>
                         <select type="text" name="nama_paket" id="nama_paket" class="form-control @error('nama_paket') is-invalid @enderror">
                             <option selected>Pilih...</option>
-                            @foreach($paket as $paket)
-                            <option value="{{$paket->id}}">{{$paket->nama}}</option>
+                            @foreach($paket as $item)
+                            <option value="{{$item->id}}">{{$item->nama}}</option>
                             @endforeach
                         @error('nama_paket')
                             <div class="text-danger">
