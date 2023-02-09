@@ -129,7 +129,7 @@ class OutletController extends Controller
      * @param  \App\Models\outlet  $outlet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(outlet $outlet)
+    public function destroy($id)
     {
         $outlet = Outlet::find($id);
         $outlet->delete();

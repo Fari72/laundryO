@@ -17,8 +17,8 @@
                         <label class="mt-2" for="id_transaksi">Transaksi</label>
                         <select type="text" name="id_transaksi" id="id_transaksi" class="form-control @error('id_transaksi') is-invalid @enderror">
                             <option selected>Pilih...</option>
-                            @foreach($transaksi as $transaksi)
-                                <option value="{{$transaksi->id}}">{{$transaksi->nama}}</option>
+                            @foreach($transaksi as $item)
+                                <option value="{{$item->id}}">{{$item->nama}}</option>
                             @endforeach
                         @error('id_transaksi')
                             <div class="text-danger">
@@ -30,8 +30,8 @@
                         <label class="mt-2" for="id_paket">Paket</label>
                         <select type="text" name="id_paket" id="id_paket" class="form-control @error('id_paket') is-invalid @enderror">
                             <option selected>Pilih...</option>
-                            @foreach($paket as $paket)
-                                <option value="{{$paket->id}}">{{$paket->nama}}</option>
+                            @foreach($paket as $item)
+                                <option value="{{$item->id}}">{{$item->nama}}</option>
                             @endforeach
                         @error('id_paket')
                             <div class="text-danger">

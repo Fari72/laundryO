@@ -110,7 +110,7 @@ class TransaksiController extends Controller
      * @param  \App\Models\transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function show(transaksi $transaksi)
+    public function show($id)
     {
         $transaksi = Transaksi::find($id);
         return response()->json($transaksi);
@@ -122,7 +122,7 @@ class TransaksiController extends Controller
      * @param  \App\Models\transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function edit(transaksi $transaksi)
+    public function edit($id)
     {
         $transaksi = Transaksi::find($id);
         return view('transaksi.form', compact('transaksi'));
@@ -135,7 +135,7 @@ class TransaksiController extends Controller
      * @param  \App\Models\transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, transaksi $transaksi)
+    public function update(Request $request, $id)
     {
         $transaksi = Transaksi::find($id);
         $transaksi->nama = $request->nama;
@@ -150,7 +150,7 @@ class TransaksiController extends Controller
      * @param  \App\Models\transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(transaksi $transaksi)
+    public function destroy($id)
     {
         $transaksi = Transaksi::find($id);
         $transaksi->delete();

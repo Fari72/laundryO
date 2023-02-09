@@ -115,7 +115,7 @@ class PaketController extends Controller
      * @param  \App\Models\paket  $paket
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, paket $paket)
+    public function update(Request $request, $id)
     {
         $paket = Paket::find($id);
         $paket->outlet = $request->outlet;
@@ -133,7 +133,7 @@ class PaketController extends Controller
      * @param  \App\Models\paket  $paket
      * @return \Illuminate\Http\Response
      */
-    public function destroy(paket $paket)
+    public function destroy($id)
     {
         $paket = Paket::find($id);
         $paket->delete();
