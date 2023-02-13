@@ -74,12 +74,9 @@
             <img alt="image" src="{{asset('public/profile' . '/' . Auth()->user()->avatar)}}" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">{{!empty(Auth()->user()->name) ? auth()->user()->name : '' }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <div class="dropdown-title">Logged in 5 min ago</div>
+              <div class="dropdown-title">welcome in</div>
               <a href="{{ route('user.profile', auth()->user()->id) }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
-              </a>
-              <a href="features-settings.html" class="dropdown-item has-icon">
-                <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>
               <a href="{{route('logout')}}" class="dropdown-item has-icon text-danger">
