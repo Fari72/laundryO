@@ -15,16 +15,6 @@
 
                         {{-- Add Mapel --}}
                         <div class="my-1">
-                            <label class="mb-2" for="id_transaksi">Transaksi</label>
-                            <input type="text" name="id_transaksi" id="id_transaksi" value="{{ old('id_transaksi')}}" class="form-control @error('id_transaksi') is-invalid @enderror">
-                            @error('id_transaksi')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="my-1">
                             <label class="mb-2" for="id_outlet">Outlet</label>
                             <input type="text" name="id_outlet" id="id_outlet" value="{{ old('id_outlet')}}" class="form-control @error('id_outlet') is-invalid @enderror">
                             @error('id_outlet')
@@ -89,7 +79,7 @@
                         
                         <div class="my-1">
                             <label class="mb-2" for="biaya_tambahan">Biaya Tambahan</label>
-                            <input type="integer" name="biaya_tambahan" id="biaya_tambahan" value="{{ old('biaya_tambahan')}}" class="form-control @error('biaya_tambahan') is-invalid @enderror">
+                            <input type="numeric" name="biaya_tambahan" id="biaya_tambahan" value="{{ old('biaya_tambahan')}}" class="form-control @error('biaya_tambahan') is-invalid @enderror">
                             @error('biaya_tambahan')
                                 <div class="text-danger">
                                     {{ $message }}
@@ -100,7 +90,7 @@
 
                     <div class="my-1">
                         <label class="mb-2" for="diskon">Diskon</label>
-                        <input type="integer" name="diskon" id="diskon" value="{{ old('diskon')}}" class="form-control @error('diskon') is-invalid @enderror">
+                        <input type="numeric" name="diskon" id="diskon" value="{{ old('diskon')}}" class="form-control @error('diskon') is-invalid @enderror">
                         @error('diskon')
                             <div class="text-danger">
                                 {{ $message }}
@@ -110,8 +100,13 @@
 
                     <div class="my-1">
                         <label class="mb-2" for="status">Status</label>
-                        <input type="text" name="status" id="status" value="{{ old('status')}}" class="form-control @error('status') is-invalid @enderror">
-                        @error('status')
+                        <select type="enum" name="status" id="status" value="{{ old('status')}}" class="form-control @error('status') is-invalid @enderror">
+                        <option value="baru">baru</option>
+                        <option value="proses">proses</option>
+                        <option value="selesai">selesai</option>
+                        <option value="diambil">diambil</option>
+                        </select>
+                            @error('status')
                             <div class="text-danger">
                                 {{ $message }}
                             </div>
@@ -120,19 +115,22 @@
                     
                     <div class="my-1">
                         <label class="mb-2" for="dibayar">Dibayar</label>
-                        <input type="text" name="dibayar" id="dibayar" value="{{ old('dibayar')}}" class="form-control @error('dibayar') is-invalid @enderror">
-                        @error('dibayar')
+                        <select type="enum" name="dibayar" id="dibayar" value="{{ old('dibayar')}}" class="form-control @error('dibayar') is-invalid @enderror">
+                        <option value="dibayar">sudah bayar</option>
+                        <option value="belum_dibayar">belum bayar</option>
+                        </select>
+                            @error('dibayar')
                             <div class="text-danger">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
 
-                    <label class="mt-2" for="id_user">Nama Pembeli</label>
+                    <label class="mt-2" for="id_user">Nama Pelanggan</label>
                         <select type="integer" name="id_user" id="id_user" class="form-control @error('id_user') is-invalid @enderror">
                             <option selected>Pilih...</option>
-                            @foreach($user as $user)
-                            <option value="{{$user->id}}">{{$user->nama}}</option>
+                            @foreach($user as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                         @error('id_user')
                             <div class="text-danger">
@@ -143,8 +141,7 @@
                 </div>
 
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary btn-flat">Simpan</button>
                     </div>
                 </form>
             </div>

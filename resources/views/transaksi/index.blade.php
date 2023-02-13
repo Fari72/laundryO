@@ -7,7 +7,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Transaksi</h1>
+        <h1>Data Transaksi</h1>
     </div>
 
     <div class="section-body">
@@ -29,23 +29,23 @@
                     </div>
 
                     {{-- Tabel --}}
-                    <div class="card-body">
-                        <table class="table table-striped text-nowrap" style="width: 100%;">
+                    <div class="card-body" style="width: 100%;">
+                        <table class="table table-striped text-nowrap">
                             <thead>
                                 <tr>
                                     <td scope="col" style="width: 50px;">No</td>
                                     <td scope="col">Outlet</td>
                                     <td scope="col">Kode</td>
-                                    <td scope="col">Member</td>
-                                    <td scope="col">Tanggal</td>
-                                    <td scope="col">Batas Waktu</td>
-                                    <td scope="col">Tanggal Bayar</td>
-                                    <td scope="col">Biaya Tambahan</td>
-                                    <td scope="col">Diskon</td>
-                                    <td scope="col">Status</td>
-                                    <td scope="col">Dibayar</td>
-                                    <td scope="col">Pelanggan</td>
-                                    <td scope="col" style="width: 120px;">Aksi</td>
+                                    <td scope="col">Member</td>                                   
+                                    <td scope="col">Tanggal pesan</td>                                   
+                                    <td scope="col">Batas Waktu</td>                                   
+                                    <td scope="col">Tanggal Bayar</td>                                   
+                                    <td scope="col">Biaya Tambahan</td>                                   
+                                    <td scope="col">Diskon</td>                                   
+                                    <td scope="col">Status</td>                                   
+                                    <td scope="col">Dibayar</td>                                   
+                                    <td scope="col">User</td>                                   
+                                    <td scope="col" style="width: 84px;">Aksi</td>
                                 </tr>
                             </thead>
                         </table>
@@ -63,162 +63,127 @@
 @endsection
 
 @push('script')
-<script>
-// Data Tables
-let table;
-$(function() {
-    table = $('.table').DataTable({
-        proccesing: true,
-        autowidth: false,
-        ajax: {
-            url: '{{ route('transaksi.data') }}'
-        },
-        columns: [
-            {data: 'DT_RowIndex'},
-            {data: 'id_outlet'},
-            {data: 'kode_invoice'},
-            {data: 'id_member'},
-            {data: 'tgl'},
-            {data: 'batas_waktu'},
-            {data: 'tgl_bayar'},
-            {data: 'biaya_tambahan'},
-            {data: 'diskon'},
-            {data: 'status'},
-            {data: 'dibayar'},
-            {data: 'id_user'},
-            {data: 'aksi'},
-        ]
-    });
-})
-$('#modalForm').on('submit', function(e){
-        if(! e.preventDefault()){
-            $.post($('#modalForm form').attr('action'), $('#modalForm form').serialize())
-            .done((response) => {
-                $('#modalForm form')[0].reset();
-                table.ajax.reload();
-                iziToast.success({
-                    title: 'Sukses',
-                    message: 'Data berhasil disimpan',
-                    position: 'topRight'
-                })
-            })
-            .fail((errors) => {
-                iziToast.error({
-                    title: 'Gagal',
-                    message: 'Data gagal disimpan',
-                    position: 'topRight'
-                })
-                return;
-            })
-        }
-    })
-$('#modalForm').on('submit', function(e){
-    if(! e.preventDefault()){
-        $.post($('#modalForm form').attr('action'), $('#modalForm form').serialize())
-        .done((response) => {
-            $('#modalForm').modal('hide');
-            table.ajax.reload();
-            iziToast.success({
-                title: 'Sukses',
-                message: 'Data berhasil disimpan',
-                position: 'topRight'
-            })
+    <script>
+        // Data Tables
+        let table;
+
+        $(function() {
+            table = $('.table').DataTable({
+                proccesing: true,
+                autowidth: false,
+                ajax: {
+                    url: '{{ route('transaksi.data') }}'
+                },
+                columns: [
+                    {data: 'DT_RowIndex'},
+                    {data: 'id_outlet'},
+                    {data: 'kode_invoice'},
+                    {data: 'id_member'},
+                    {data: 'tgl'},
+                    {data: 'batas_waktu'},
+                    {data: 'tgl_bayar'},
+                    {data: 'biaya_tambahan'},
+                    {data: 'diskon'},
+                    {data: 'status'},
+                    {data: 'dibayar'},
+                    {data: 'id_user'},
+                    {data: 'aksi'}
+                ]
+            });
         })
-        .fail((errors) => {
-            iziToast.error({
-                title: 'Gagal',
-                message: 'Data gagal disimpan',
-                position: 'topRight'
-            })
-            return;
-        })
-    }
-})
-    function addForm(url){
-        $('#modalForm').modal('show');
-        $('#modalForm .modal-title').text('Tambah Data Transaksi');
-        
-        $('#modalForm form')[0].reset();
-        $('#modalForm form').attr('action', url);
-        $('#modalForm [id_outlet=_method]').val('post');
-        $('#modalForm [kode_invoice=_method]').val('post');
-        $('#modalForm [jenis_kelamin=_method]').val('post');
-        $('#modalForm [tgl=_method]').val('post');
-        $('#modalForm [batas_waktu=_method]').val('post');
-        $('#modalForm [tgl_bayar=_method]').val('post');
-        $('#modalForm [biaya_tambahan=_method]').val('post');
-        $('#modalForm [diskon=_method]').val('post');
-        $('#modalForm [status=_method]').val('post');
-        $('#modalForm [dibayar=_method]').val('post');
-        $('#modalForm [id_user=_method]').val('post');
-    }
-    function editData(url){
-        $('#modalForm').modal('show');
-        $('#modalForm .modal-title').text('Edit Data Transaksi');
-        $('#modalForm form')[0].reset();
-        $('#modalForm form').attr('action', url);
-        $('#modalForm [id_outlet=_method]').val('put');
-        $('#modalForm [kode_invoice=_method]').val('put');
-        $('#modalForm [id_member=_method]').val('put');
-        $('#modalForm [tgl=_method]').val('put');
-        $('#modalForm [batas_waktu=_method]').val('put');
-        $('#modalForm [tgl_bayar=_method]').val('put');
-        $('#modalForm [biaya_tambahan=_method]').val('put');
-        $('#modalForm [diskon=_method]').val('put');
-        $('#modalForm [status=_method]').val('put');
-        $('#modalForm [dibayar=_method]').val('put');
-        $('#modalForm [id_user=_method]').val('put');
-        $.get (url)
-            .done((response) => {
-                $('#modalForm [name=id_outlet]').val(response.id_outlet);
-                $('#modalForm [name=kode_invoice]').val(response.kode_invoice);
-                $('#modalForm [name=id_member]').val(response.id_member);
-                $('#modalForm [name=tgl]').val(response.tgl);
-                $('#modalForm [name=batas_waktu]').val(response.batas_waktu);
-                $('#modalForm [name=tgl_bayar]').val(response.tgl_bayar);
-                $('#modalForm [name=biaya_tambahan]').val(response.biaya_tambahan);
-                $('#modalForm [name=diskon]').val(response.diskon);
-                $('#modalForm [name=status]').val(response.status);
-                $('#modalForm [name=dibayar]').val(response.dibayar);
-                $('#modalForm [name=id_user]').val(response.id_user);
-                // console.log(response.nama);
-            })
-            .fail((errors) => {
-                alert('Tidak Dapat Menampilkan Data');
-                return;
-            })
-    }
-    function deleteData(url){
-        swal({
-            title: "Apa anda yakin menghapus data ini?",
-            text: "Jika anda klik OK, maka data akan terhapus",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-            })
-            .then((willDelete) => {
-            if (willDelete) {
-                $.post(url, {
-                '_token' : $('[name=csrf-token]').attr('content'),
-                '_method' : 'delete'
-            })
-            .done((response) => {
-                swal({
-                title: "Sukses",
-                text: "Data berhasil dihapus!",
-                icon: "success",
-                });
-            })
-            .fail((errors) => {
-                swal({
-                title: "Gagal",
-                text: "Data gagal dihapus!",
-                icon: "error",
-                });
-            })
-            table.ajax.reload();
+
+        $('#modalForm').on('submit', function(e){
+            if(! e.preventDefault()){
+                $.post($('#modalForm form').attr('action'), $('#modalForm form').serialize())
+                .done((response) => {
+                    $('#modalForm').modal('hide');
+                    table.ajax.reload();
+                    iziToast.success({
+                        title: 'Sukses',
+                        message: 'Data berhasil disimpan',
+                        position: 'topRight'
+                    })
+                })
+                .fail((errors) => {
+                    iziToast.error({
+                        title: 'Gagal',
+                        message: 'Data gagal disimpan',
+                        position: 'topRight'
+                    })
+                    return;
+                })
             }
-        });
-    }
-</script>
+        })
+
+        function addForm(url){
+            $('#modalForm').modal('show');
+            $('#modalForm .modal-title').text('Tambah Data transaksi');
+            $('#modalForm form')[0].reset();
+
+            $('#modalForm form').attr('action', url);
+            $('#modalForm [name=_method]').val('post');
+        }
+
+        function editData(url){
+            $('#modalForm').modal('show');
+            $('#modalForm .modal-title').text('Edit Data transaksi');
+            
+            $('#modalForm form')[0].reset();
+            $('#modalForm form').attr('action', url);
+            $('#modalForm [name=_method]').val('put');
+            $.get (url)
+                .done((response) => {
+                    $('#modalForm [name=id_outlet]').val(response.id_outlet);
+                    $('#modalForm [name=kode_invoice]').val(response.kode_invoice);
+                    $('#modalForm [name=id_member]').val(response.id_member);
+                    $('#modalForm [name=tgl]').val(response.tgl);
+                    $('#modalForm [name=batas_waktu]').val(response.batas_waktu);
+                    $('#modalForm [name=tgl_bayar]').val(response.tgl_bayar);
+                    $('#modalForm [name=biaya_tambahan]').val(response.biaya_tambahan);
+                    $('#modalForm [name=diskon]').val(response.diskon);
+                    $('#modalForm [name=status]').val(response.status);
+                    $('#modalForm [name=dibayar]').val(response.dibayar);
+                    $('#modalForm [name=id_user]').val(response.id_user);
+                    // console.log(response.name);
+                })
+                .fail((errors) => {
+                    alert('Tidak Dapat Menampilkan Data');
+                    return;
+                })
+        }
+
+        function deleteData(url){
+            swal({
+                title: "Apa anda yakin menghapus data ini?",
+                text: "Jika anda klik OK, maka data akan terhapus",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    $.post(url, {
+                    '_token' : $('[name=csrf-token]').attr('content'),
+                    '_method' : 'delete'
+                })
+                .done((response) => {
+                    swal({
+                    title: "Sukses",
+                    text: "Data berhasil dihapus!",
+                    icon: "success",
+                    });
+                })
+                .fail((errors) => {
+                    swal({
+                    title: "Gagal",
+                    text: "Data gagal dihapus!",
+                    icon: "error",
+                    });
+                })
+                table.ajax.reload();
+                }
+            });
+
+        }
+    </script>
 @endpush
