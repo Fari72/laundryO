@@ -6,11 +6,30 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Str;
 class AuthController extends Controller
 {
     public function login()
     {
+        return view('auth.login');
+    }
+
+    public function register()
+    {
+        return view('auth.register');
+    }
+
+    public function simpanRegister(Request $request)
+    {
+        User::create
+        ([
+            'name' => $request->nama,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => 'owner',
+            'remember_token' => Str::random(20),
+        ]);
         return view('auth.login');
     }
 
@@ -33,23 +52,5 @@ class AuthController extends Controller
         Auth::logout();
 
         return redirect(route('login'));
-    }
-
-    public function register()
-    {
-        return view('auth.register');
-    }
-
-    public function simpanRegister(Request $request)
-    {
-        User::create
-        ([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->owner),
-            'role' => 'owner',
-            'remember_token' => Str::random(20),
-        ]);
-        return view('auth.login');
     }
 }

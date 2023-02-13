@@ -32,47 +32,48 @@
 
               <div class="card-body">
                 <form action="{{route('simpanRegister')}}" method="POST">
-                  <div class="form-group col-12">
-                    <label for="nama">Nama</label>
-                    <input id="nama" name="nama" type="text" class="form-control" name="frist_name" autofocus>
-                  </div>
-
-                  <div class="form-group col-12">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email">
-                    <div class="invalid-feedback">
+                  @csrf
+                    <div class="form-group col-12">
+                      <label for="nama">Nama</label>
+                      <input id="nama" name="nama" type="text" class="form-control" name="frist_name" autofocus>
                     </div>
-                  </div>
-
 
                     <div class="form-group col-12">
-                      <label for="password" class="d-block">Password</label>
-                      <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password">
-                      <div id="pwindicator" class="pwindicator">
-                        <div class="bar"></div>
-                        <div class="label"></div>
+                      <label for="email">Email</label>
+                      <input id="email" type="email" class="form-control" name="email">
+                      <div class="invalid-feedback">
                       </div>
                     </div>
+
+
+                      <div class="form-group col-12">
+                        <label for="password" class="d-block">Password</label>
+                        <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password">
+                        <div id="pwindicator" class="pwindicator">
+                          <div class="bar"></div>
+                          <div class="label"></div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="container"></div>                       
+                            <a href="{{route('login')}}" class="nav-link">Sudah Memiliki Akun</a>
+                        </div>
+                      </div>
 
                     <div class="form-group">
-                      <div class="container"></div>                       
-                          <a href="{{route('login')}}" class="nav-link">Sudah Memiliki Akun</a>
-                      </div>
+                      <button type="submit" class="btn btn-primary btn-lg btn-block">
+                        Register
+                      </button>
                     </div>
-
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">
-                      Register
-                    </button>
-                  </div>
                 </form>
               </div>
             </div>
-            <div class="simple-footer">
-              Copyright &copy; Aizan <!--{{ date('Y') }}-->
-            </div>
           </div>
         </div>
+      </div>
+      <div class="simple-footer">
+        Copyright &copy; Aizan <!--{{ date('Y') }}-->
       </div>
     </section>
   </div>
