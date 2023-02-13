@@ -121,6 +121,7 @@
                     <div class="my-1">
                         <label class="mb-2" for="dibayar">Dibayar</label>
                         <select type="enum" class="form-control" name="dibayar" id="dibayar" value="{{ old('dibayar')}}" class="form-control @error('dibayar') is-invalid @enderror">
+                        <option selected>pilih...</option>
                         <option value="dibayar">sudah bayar</option>
                         <option value="belum_dibayar">belum bayar</option>
                         </select>
@@ -146,6 +147,7 @@
                 </div>
 
                     <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary btn-flat">Simpan</button>
                     </div>
                 </form>

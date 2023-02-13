@@ -30,6 +30,12 @@ class DetailTransaksiController extends Controller
         return datatables()
             ->of($detailtransaksi)
             ->addIndexColumn()
+            ->addColumn('id_transaksi', function($detailtransaksi){
+                return !empty($detailtransaksi->transaksi->name) ? $detailtransaksi->transaksi->name : '-';
+              })
+            ->addColumn('id_paket', function($detailtransaksi){
+            return !empty($detailtransaksi->paket->name) ? $detailtransaksi->paket->name : '-';
+            })
             ->addColumn('aksi', function($detailtransaksi){
                 return '
                 <div class="btn-group">
@@ -38,7 +44,7 @@ class DetailTransaksiController extends Controller
                 </div>
                 ';
             })
-            ->rawColumns(['aksi'])
+            ->rawColumns(['aksi','id_transaksi','id_paket'])
             ->make(true);
     }
     /**
@@ -48,7 +54,7 @@ class DetailTransaksiController extends Controller
      */
     public function create()
     {
-        //
+        return view('detailtransaksi.form');
     }
 
     /**
@@ -62,7 +68,7 @@ class DetailTransaksiController extends Controller
         $validator = Validator::make($request->all(), [
             'id_transaksi' => 'required',
             'id_paket' => 'required',
-            'qty' => 'required',
+            'qty' => 'required|numeric',
             'keterangan' => 'required',
         ]);
 
@@ -118,13 +124,11 @@ class DetailTransaksiController extends Controller
     public function update(Request $request, $id)
     {
         $detailtransaksi = Detailtransaksi::find($id);
-        $detailtransaksi->nama = $request->nama;
         $detailtransaksi->id_transaksi = $request->id_transaksi;
         $detailtransaksi->id_paket = $request->id_paket;
         $detailtransaksi->qty = $request->qty;
         $detailtransaksi->keterangan = $request->keterangan;
         $detailtransaksi->update();
-
         return response()->json('Data Berhasil Disimpan');
     }
 
@@ -138,7 +142,5 @@ class DetailTransaksiController extends Controller
     {
         $detailtransaksi = Detailtransaksi::find($id);
         $detailtransaksi->delete();
-
-        return redirect('detailtransaksi');
     }
 }
