@@ -65,7 +65,7 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-success">
-          <i class="fas fa-box"></i>
+          <i class="fas fa-box-open"></i>
         </div>
 
         <div class="card-wrap">
