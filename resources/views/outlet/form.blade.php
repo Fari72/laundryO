@@ -26,11 +26,11 @@ data-backdrop="static" data-keyboard="false">
 
                     <div class="form-group">
                         <label for="tlp">Telepone</label>
-                        <input type="text" class="form-control" name="tlp" id="tlp">
+                        <input type="numeric" class="form-control" name="tlp" id="tlp">
                     </div>
                     
                     <div class="modal-footer justify-content-between">
-                        <button type="submit" class="btn btn-success btn-flat">Simpan</button>
+                        <button type="submit" class="btn btn-primary btn-flat">Simpan</button>
                     </div>
                 </form>
 

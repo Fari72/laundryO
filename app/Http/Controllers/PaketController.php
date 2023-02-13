@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\paket;
 use App\Models\outlet;
-use App\Models\detailtransaksi;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -19,8 +18,7 @@ class PaketController extends Controller
     {
         $paket = Paket::all();
         $outlet = Outlet::all();
-        $detailtransaksi = Detailtransaksi::all();
-        return view('paket.index', compact('paket','detailtransaksi','outlet'));
+        return view('paket.index', compact('paket','outlet'));
     }
 
     public function data()
@@ -30,6 +28,9 @@ class PaketController extends Controller
         return datatables()
             ->of($paket)
             ->addIndexColumn()
+            ->addColumn('id_outlet', function($paket){
+              return !empty($paket->outlet->name) ? $paket->outlet->name : '-';
+            })
             ->addColumn('aksi', function($paket){
                 return '
                 <div class="btn-group">
@@ -38,7 +39,7 @@ class PaketController extends Controller
                 </div>
                 ';
             })
-            ->rawColumns(['aksi'])
+            ->rawColumns(['id_outlet','aksi'])
             ->make(true);
     }
     /**
@@ -48,7 +49,7 @@ class PaketController extends Controller
      */
     public function create()
     {
-        //
+        return view('paket.form');
     }
 
     /**
@@ -60,10 +61,10 @@ class PaketController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'outlet' => 'required',
+            'id_outlet' => 'required',
             'jenis' => 'required',
             'nama_paket' => 'required',
-            'harga' => 'required',
+            'harga' => 'required|numeric',
         ]);
 
         if($validator->fails()){
@@ -71,7 +72,7 @@ class PaketController extends Controller
         }
 
         $paket = Paket::create([
-            'outlet' => $request->outlet,
+            'id_outlet' => $request->id_outlet,
             'jenis' => $request->jenis,
             'nama_paket' => $request->nama_paket,
             'harga' => $request->harga,
@@ -118,12 +119,11 @@ class PaketController extends Controller
     public function update(Request $request, $id)
     {
         $paket = Paket::find($id);
-        $paket->outlet = $request->outlet;
+        $paket->id_outlet = $request->id_outlet;
         $paket->jenis = $request->jenis;
         $paket->nama_paket = $request->nama_paket;
         $paket->harga = $request->harga;
         $paket->update();
-
         return response()->json('Data Berhasil Disimpan');
     }
 
@@ -137,7 +137,5 @@ class PaketController extends Controller
     {
         $paket = Paket::find($id);
         $paket->delete();
-
-        return redirect('paket');
     }
 }

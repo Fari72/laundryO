@@ -40,7 +40,7 @@ data-backdrop="static" data-keyboard="false">
 
                     <div class="form-group">
                         <label for="tlp">telepone</label>
-                        <input type="text" class="form-control" name="tlp" id="tlp">
+                        <input type="numeric" class="form-control" name="tlp" id="tlp">
                     </div>
                     
                     <div class="modal-footer justify-content-between">

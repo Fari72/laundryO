@@ -15,51 +15,48 @@
 
                         {{-- Add Mapel --}}
                         <div class="my-1">
-                            <label class="mb-2" for="id_paket">Paket</label>
-                            <input type="text" name="id_paket" id="id_paket" value="{{ old('id_paket')}}" class="form-control @error('id_paket') is-invalid @enderror">
-                            @error('id_paket')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="my-1">
                             <label class="mb-2" for="id_outlet">Outlet</label>
-                            <input type="text" name="id_outlet" id="id_outlet" value="{{ old('id_outlet')}}" class="form-control @error('id_outlet') is-invalid @enderror">
-                            @error('id_outlet')
+                            <select type="text" name="id_outlet" id="id_outlet" value="{{ old('id_outlet')}}" class="form-control @error('id_outlet') is-invalid @enderror">
+                                <option selected>pilih...</option>
+                                @foreach ($outlet as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                                @error('id_outlet')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </select>
+                        </div>
+
+                        <div class="my-1">
+                            <label class="mb-2" for="jenis">Jenis</label>
+                            <select type="enum" class="form-control" name="jenis" id="jenis" value="{{ old('jenis')}}" class="form-control @error('jenis') is-invalid @enderror">
+                                <option selected>Pilih...</option>
+                                <option value="kiloan">kiloan</option>
+                                <option value="selimut">selimut</option>
+                                <option value="bed_cover">bed cover</option>
+                                <option value="kaos">kaos</option>
+                                <option value="lain">lain</option>
+                            </select>
+                                @error('jenis')
                                 <div class="text-danger">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
 
-                        <div class="my-1">
-                            <label class="mb-2" for="jenis">Progres</label>
-                            <input type="text" name="jenis" id="jenis" value="{{ old('jenis')}}" class="form-control @error('jenis') is-invalid @enderror">
-                            @error('jenis')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        
-                        <label class="mt-2" for="nama_paket">Jenis Paket</label>
-                        <select type="text" name="nama_paket" id="nama_paket" class="form-control @error('nama_paket') is-invalid @enderror">
-                            <option selected>Pilih...</option>
-                            @foreach($paket as $item)
-                            <option value="{{$item->id}}">{{$item->nama}}</option>
-                            @endforeach
+                        <label class="mt-2" for="nama_paket">Nama Paket</label>
+                        <input type="text" class="form-control" name="nama_paket" id="nama_paket" class="form-control @error('nama_paket') is-invalid @enderror">
                         @error('nama_paket')
                             <div class="text-danger">
                                 {{ $message }}
                             </div>
-                            @enderror
-                        </select>
+                        @enderror
 
                         <div class="my-1">
                             <label class="mb-2" for="harga">Harga</label>
-                            <input type="text" name="harga" id="harga" value="{{ old('harga')}}" class="form-control @error('harga') is-invalid @enderror">
+                            <input type="numeric" class="form-control" name="harga" id="harga" value="{{ old('harga')}}" class="form-control @error('harga') is-invalid @enderror">
                             @error('harga')
                                 <div class="text-danger">
                                     {{ $message }}
@@ -69,8 +66,7 @@
                     </div>
 
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary btn-flat">Simpan</button>
                     </div>
                 </form>
             </div>

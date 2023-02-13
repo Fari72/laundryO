@@ -12,10 +12,6 @@ class paket extends Model
     protected $table = 'paket';
     protected $guarded = [];
 
-    public function detailtransaksi()
-    {
-        return $this->belongsTo(Detailtransaksi::class);
-    }
     public function outlet()
     {
         return $this->belongsTo(Outlet::class);
