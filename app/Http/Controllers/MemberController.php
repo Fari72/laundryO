@@ -59,7 +59,7 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
+            'name' => 'required',
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
             'tlp' => 'required',
@@ -70,7 +70,7 @@ class MemberController extends Controller
         }
 
         $member = Member::create([
-            'nama' => $request->nama,
+            'name' => $request->name,
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tlp' => $request->tlp,
@@ -117,7 +117,7 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         $member = Member::find($id);
-        $member->nama = $request->nama;
+        $member->name = $request->name;
         $member->alamat = $request->alamat;
         $member->jenis_kelamin = $request->jenis_kelamin;
         $member->tlp = $request->tlp;

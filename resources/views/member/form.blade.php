@@ -1,77 +1,56 @@
-<div class="modal fade" id="modalForm" style="display: none; padding-right: 17px;" aria-modal="true" role="dialog" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+<div class="modal fade " id="modalForm" style="display: none; padding-right: 17px;" aria-modal="true" role="dialog" 
+data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog-centered modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"> </h4>
+                <h4 class="modal-title">Large Modal</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                
+                <form action="" method="post">
                     @csrf
                     @method('PUT')
+
                     <div class="form-group">
-
-                        {{-- Add Mapel --}}
-                        <div class="my-1">
-                            <label class="mb-2" for="id_member">Member</label>
-                            <input type="text" name="id_member" id="id_member" value="{{ old('id_member')}}" class="form-control @error('id_member') is-invalid @enderror">
-                            @error('id_member')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="my-1">
-                            <label class="mb-2" for="nama">Nama</label>
-                            <input type="text" name="nama" id="nama" value="{{ old('nama')}}" class="form-control @error('nama') is-invalid @enderror">
-                            @error('nama')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="my-1">
-                            <label class="mb-2" for="alamat">Alamat</label>
-                            <input type="text" name="alamat" id="alamat" value="{{ old('alamat')}}" class="form-control @error('alamat') is-invalid @enderror">
-                            @error('alamat')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="my-1">
-                            <label class="mb-2" for="jenis_kelamin">Jenis Kelamin</label>
-                            <input type="text" name="jenis_kelamin" id="jenis_kelamin" value="{{ old('jenis_kelamin')}}" class="form-control @error('jenis_kelamin') is-invalid @enderror">
-                            <option value="laki-laki">laki-laki</option>
-                            <option value="perempuan">perempuan</option>
-                            @error('jenis_kelamin')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        
-                        <div class="my-1">
-                            <label class="mb-2" for="tlp">Telepone</label>
-                            <input type="integer" name="tlp" id="tlp" value="{{ old('tlp')}}" class="form-control @error('tlp') is-invalid @enderror">
-                            @error('tlp')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
+                        <label for="name">Nama</label>
+                        <input type="text" class="form-control" name="name" id="name">
                     </div>
 
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control" name="alamat" id="alamat">
+                    </div>
+
+                    <div class="form-group">
+                        
+                             <!-- Add Jenis Kelamin  -->
+                            <div class="my-1">
+                                <label class="mb-2" for="jenis_kelamin">Jenis Kelamin</label>
+                                <br>
+                                <select name="jenis_kelamin" id="jenis_kelamin" value="{{ old('jenis_kelamin')}}" class="form-control">
+                                    <option value="Laki-laki"> Laki-Laki</option>
+                                    <option value="Perempuan"> Perempuan</option>
+                                </select>
+                            </div>
+                        
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tlp">telepone</label>
+                        <input type="text" class="form-control" name="tlp" id="tlp">
+                    </div>
+                    
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-success btn-flat">Simpan</button>
                     </div>
                 </form>
+
             </div>
         </div>
+
     </div>
+
 </div>
