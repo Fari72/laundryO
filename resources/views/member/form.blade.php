@@ -44,7 +44,7 @@ data-backdrop="static" data-keyboard="false">
                     </div>
                     
                     <div class="modal-footer justify-content-between">
-                        <button type="submit" class="btn btn-success btn-flat">Simpan</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
 

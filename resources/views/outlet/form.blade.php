@@ -15,15 +15,6 @@
 
                         {{-- Add Mapel --}}
                         <div class="my-1">
-                            <label class="mb-2" for="id_outlet">Outlet</label>
-                            <input type="text" name="id_outlet" id="id_outlet" value="{{ old('id_outlet')}}" class="form-control @error('id_outlet') is-invalid @enderror">
-                            @error('id_outlet')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="my-1">
                             <label class="mb-2" for="nama">Nama</label>
                             <input type="text" name="nama" id="nama" value="{{ old('nama')}}" class="form-control @error('nama') is-invalid @enderror">
                             @error('nama')
@@ -54,7 +45,6 @@
                         </div>
 
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
