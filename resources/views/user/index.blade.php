@@ -3,12 +3,12 @@
 @section('title', 'User')
 
 @section('content')
-  <div class="section-header">
+  <div class="card">
     <h1>User</h1>
 
     <div class="section-header-breadcrumb">
       <div class="breadcrump-item {{ active('user') }}">
-        User
+        
       </div>
     </div>
   </div>
