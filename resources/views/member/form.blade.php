@@ -45,7 +45,9 @@
 
                         <div class="my-1">
                             <label class="mb-2" for="jenis_kelamin">Jenis Kelamin</label>
-                            <input type="enum" name="jenis_kelamin" id="jenis_kelamin" value="{{ old('jenis_kelamin')}}" class="form-control @error('jenis_kelamin') is-invalid @enderror">
+                            <input type="text" name="jenis_kelamin" id="jenis_kelamin" value="{{ old('jenis_kelamin')}}" class="form-control @error('jenis_kelamin') is-invalid @enderror">
+                            <option value="laki-laki">laki-laki</option>
+                            <option value="perempuan">perempuan</option>
                             @error('jenis_kelamin')
                                 <div class="text-danger">
                                     {{ $message }}
