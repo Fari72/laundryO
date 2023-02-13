@@ -62,7 +62,7 @@ class MemberController extends Controller
             'name' => 'required',
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
-            'tlp' => 'required',
+            'tlp' => 'required|numeric',
         ]);
 
         if($validator->fails()){

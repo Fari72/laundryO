@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\outlet;
-use App\Models\paket;
-use App\Models\User;
-use App\Models\transaksi;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -19,30 +16,27 @@ class OutletController extends Controller
     public function index()
     {
         $outlet = Outlet::all();
-        $paket = Paket::all();
-        $user = User::all();
-        $transaksi = Transaksi::all();
-        return view('outlet.index', compact('outlet','paket','user','transaksi'));
+        return view('outlet.index', compact('outlet'));
     }
 
-    public function data()
-    {
+    public function data(){
         $outlet = Outlet::orderBy('id', 'desc')->get();
 
         return datatables()
-            ->of($outlet)
-            ->addIndexColumn()
-            ->addColumn('aksi', function($outlet){
-                return '
-                <div class="btn-group">
-                    <button onclick="editData(`' .route('outlet.update', $outlet->id). '`)" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
-                    <button onclick="deleteData(`' .route('outlet.destroy', $outlet->id). '`)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                </div>
-                ';
-            })
-            ->rawColumns(['aksi'])
-            ->make(true);
+        ->of($outlet)
+        ->addIndexColumn()
+        ->addColumn('aksi', function($outlet){
+            return'
+            <div class="btn-group">
+                <button onclick="editData(`'.route('outlet.update', $outlet->id).'`)" class="btn btn-flat btn-xs btn-warning"><i class="fa fa-edit"></i></button>
+                <button onclick="deleteData(`'.route('outlet.destroy', $outlet->id).'`)" class="btn btn-flat btn-xs btn-danger"><i class="fa fa-trash"></i></button>
+            </div>
+            ';
+        })
+        ->rawColumns(['aksi'])
+        ->make(true);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -50,7 +44,7 @@ class OutletController extends Controller
      */
     public function create()
     {
-        //
+        return view('outlet.form');
     }
 
     /**
@@ -61,25 +55,23 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'nama' => 'required',
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|alpha',
             'alamat' => 'required',
+            'tlp' => 'required|numeric'
         ]);
 
-        if($validator->fails()){
-            return response()->json($validator->errors(), 422);
-        }
+       $outlet = Outlet::create([
+        'name' => $request->name,
+        'alamat' => $request->alamat,
+        'tlp' => $request->tlp
+       ]);
 
-        $outlet = Outlet::create([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Berhasil Disimpan',
-            'data' => $outlet
-        ]);
+       return response()->json([
+        'success' => true,
+        'massage' => 'Data berhasil disimpan',
+        'data' => $outlet
+       ]);
     }
 
     /**
@@ -116,11 +108,11 @@ class OutletController extends Controller
     public function update(Request $request, $id)
     {
         $outlet = Outlet::find($id);
-        $outlet->nama = $request->nama;
+        $outlet->name = $request->name;
         $outlet->alamat = $request->alamat;
+        $outlet->tlp = $request->tlp;
         $outlet->update();
-
-        return response()->json('Data Berhasil Disimpan');
+        return response()->json('Data berhasil disimpan');
     }
 
     /**
@@ -133,7 +125,5 @@ class OutletController extends Controller
     {
         $outlet = Outlet::find($id);
         $outlet->delete();
-
-        return redirect('outlet');
     }
 }
