@@ -41,9 +41,7 @@
 
       <!-- Main Content -->
       <div class="main-content">
-        <section class="section">
-         @yield('content')
-        </section>
+        @yield('content')
       </div>
       @include('layouts.footer')
     </div>
