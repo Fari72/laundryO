@@ -36,6 +36,12 @@ class TransaksiController extends Controller
         return datatables()
             ->of($transaksi)
             ->addIndexColumn()
+            ->addColumn('id_outlet', function($transaksi){
+                return !empty($transaksi->outlet->name) ? $transaksi->outlet->name : '-';
+              })
+            ->addColumn('id_member', function($transaksi){
+                return !empty($transaksi->member->name) ? $transaksi->member->name : '-';
+              })
             ->addColumn('aksi', function($transaksi){
                 return '
                 <div class="btn-group">
@@ -44,7 +50,7 @@ class TransaksiController extends Controller
                 </div>
                 ';
             })
-            ->rawColumns(['aksi'])
+            ->rawColumns(['aksi','id_member','id_transaksi'])
             ->make(true);
     }
     /**
@@ -54,7 +60,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        //
+        return view('transaksi.form');
     }
 
     /**
@@ -73,7 +79,7 @@ class TransaksiController extends Controller
             'batas_waktu' => 'required',
             'tgl_bayar' => 'required',
             'biaya_tambahan' => 'required',
-            'diskon' => 'required',
+            'diskon' => 'required|numeric',
             'status' => 'required',
             'dibayar' => 'required',
             'id_user' => 'required',

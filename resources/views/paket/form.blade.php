@@ -16,7 +16,7 @@
                         {{-- Add Mapel --}}
                         <div class="my-1">
                             <label class="mb-2" for="id_outlet">Outlet</label>
-                            <select type="text" name="id_outlet" id="id_outlet" value="{{ old('id_outlet')}}" class="form-control @error('id_outlet') is-invalid @enderror">
+                            <select type="text" class="form-control" name="id_outlet" id="id_outlet" value="{{ old('id_outlet')}}" class="form-control @error('id_outlet') is-invalid @enderror">
                                 <option selected>pilih...</option>
                                 @foreach ($outlet as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
