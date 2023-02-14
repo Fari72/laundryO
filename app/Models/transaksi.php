@@ -12,6 +12,14 @@ class transaksi extends Model
     protected $table = 'transaksi';
     protected $guarded = [];
 
+    protected $fillable = [
+        'user',
+        'outlet',
+        'paket',
+        'member',
+        'detailtransksi',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

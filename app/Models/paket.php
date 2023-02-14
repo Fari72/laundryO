@@ -12,6 +12,10 @@ class paket extends Model
     protected $table = 'paket';
     protected $guarded = [];
 
+    protected $fillable = [
+        'outlet',
+    ];
+    
     public function outlet()
     {
         return $this->belongsTo(Outlet::class);
