@@ -94,7 +94,8 @@ class PaketController extends Controller
     public function show($id)
     {
         $paket = Paket::find($id);
-        return response()->json($paket);
+        $outlet = Outlet::find($id);
+        return response()->json($paket, $outlet);
     }
 
     /**
@@ -106,7 +107,8 @@ class PaketController extends Controller
     public function edit($id)
     {
         $paket = Paket::find($id);
-        return view('paket.form', compact('paket'));
+        $outlet = Outlet::find($id);
+        return view('paket.form', compact('paket','outlet'));
     }
 
     /**
@@ -119,6 +121,7 @@ class PaketController extends Controller
     public function update(Request $request, $id)
     {
         $paket = Paket::find($id);
+        $outlet = Outlet::find($id);
         $paket->id_outlet = $request->id_outlet;
         $paket->jenis = $request->jenis;
         $paket->nama_paket = $request->nama_paket;
