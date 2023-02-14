@@ -56,7 +56,7 @@
 
                         <div class="my-1">
                             <label class="mb-2" for="harga">Harga</label>
-                            <input type="numeric" class="form-control" name="harga" id="harga" value="{{ old('harga')}}" class="form-control @error('harga') is-invalid @enderror">
+                            <input type="number" class="form-control" name="harga" id="harga" value="{{ old('harga')}}" class="form-control @error('harga') is-invalid @enderror">
                             @error('harga')
                                 <div class="text-danger">
                                     {{ $message }}

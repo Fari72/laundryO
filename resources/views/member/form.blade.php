@@ -31,6 +31,7 @@ data-backdrop="static" data-keyboard="false">
                                 <label class="mb-2" for="jenis_kelamin">Jenis Kelamin</label>
                                 <br>
                                 <select name="jenis_kelamin" id="jenis_kelamin" value="{{ old('jenis_kelamin')}}" class="form-control">
+                                    <option selected>pilih...</option>
                                     <option value="Laki-laki"> Laki-Laki</option>
                                     <option value="Perempuan"> Perempuan</option>
                                 </select>
