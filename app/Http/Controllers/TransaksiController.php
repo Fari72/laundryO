@@ -20,13 +20,18 @@ class TransaksiController extends Controller
      */
     public function index()
     {
+        $bulan = date('m');
+        $tahun = date('y');
+        $maxid = transaksi::max('id')+1;
+
         $transaksi = Transaksi::all();
-        $detailtransaksi = Detailtransaksi::all();
-        $paket = Paket::all();
         $outlet = Outlet::all();
         $member = Member::all();
         $user = User::all();
-        return view('transaksi.index', compact('transaksi','detailtransaksi','paket','outlet','member','user'));
+
+        $kode_invoice = 'INV' . '/' . $maxid . '/'. $bulan . '/' . $tahun;
+
+        return view('transaksi.index', compact('transaksi','outlet','member','user','kode_invoice'));
     }
 
     public function data()

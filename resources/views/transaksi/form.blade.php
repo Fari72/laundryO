@@ -30,7 +30,7 @@
 
                         <div class="my-1">
                             <label class="mb-2" for="kode_invoice">Kode</label>
-                            <input type="text" class="form-control" name="kode_invoice" id="kode_invoice" value="{{ old('kode_invoice')}}" class="form-control @error('kode_invoice') is-invalid @enderror">
+                            <input type="text" class="form-control" name="kode_invoice" id="kode_invoice" value="{{ $kode_invoice }}" aria-label="Disabled input example" readonly>
                             @error('kode_invoice')
                                 <div class="text-danger">
                                     {{ $message }}
@@ -54,36 +54,21 @@
                         <div class="my-1">
                             <label class="mb-2" for="tgl">Tanggal</label>
                             <input type="date" class="form-control" name="tgl" id="tgl" value="{{ old('tgl')}}" class="form-control @error('tgl') is-invalid @enderror">
-                            @error('tgl')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
                         
                         <div class="my-1">
                             <label class="mb-2" for="batas_waktu">Batas Waktu</label>
                             <input type="date" class="form-control" name="batas_waktu" id="batas_waktu" value="{{ old('batas_waktu')}}" class="form-control @error('batas_waktu') is-invalid @enderror">
-                            @error('batas_waktu')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
 
                         <div class="my-1">
                             <label class="mb-2" for="tgl_bayar">Tanggal Bayar</label>
                             <input type="date" class="form-control" name="tgl_bayar" id="tgl_bayar" value="{{ old('tgl_bayar')}}" class="form-control @error('tgl_bayar') is-invalid @enderror">
-                            @error('tgl_bayar')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
                         
                         <div class="my-1">
                             <label class="mb-2" for="biaya_tambahan">Biaya Tambahan</label>
-                            <input type="numeric" class="form-control" name="biaya_tambahan" id="biaya_tambahan" value="{{ old('biaya_tambahan')}}" class="form-control @error('biaya_tambahan') is-invalid @enderror">
+                            <input type="number" class="form-control" name="biaya_tambahan" id="biaya_tambahan" value="{{ old('biaya_tambahan')}}" class="form-control @error('biaya_tambahan') is-invalid @enderror">
                             @error('biaya_tambahan')
                                 <div class="text-danger">
                                     {{ $message }}
@@ -94,7 +79,7 @@
 
                     <div class="my-1">
                         <label class="mb-2" for="diskon">Diskon</label>
-                        <input type="numeric" class="form-control" name="diskon" id="diskon" value="{{ old('diskon')}}" class="form-control @error('diskon') is-invalid @enderror">
+                        <input type="number" class="form-control" name="diskon" id="diskon" value="{{ old('diskon')}}" class="form-control @error('diskon') is-invalid @enderror">
                         @error('diskon')
                             <div class="text-danger">
                                 {{ $message }}
