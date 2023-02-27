@@ -17,7 +17,8 @@ class transaksi extends Model
     protected $table = 'transaksi';
 
     protected $fillable = [
-        'id_outlet','kode_invoice','id_member','tgl','batas_waktu','tgl_bayar','biaya_tambahan','diskon','status','dibayar','id_user'
+        'id_outlet','kode_invoice','id_member','tgl','batas_waktu','tgl_bayar','biaya_tambahan','diskon','status',
+        'dibayar','id_user'
     ];
 
     public function user()
