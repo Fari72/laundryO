@@ -104,6 +104,10 @@ class MemberController extends Controller
     public function edit($id)
     {
         $member = Member::find($id);
+        $member->name = $request->name;
+        $member->alamat = $request->alamat;
+        $member->jenis_kelamin = $request->jenis_kelamin;
+        $member->tlp = $request->tlp;
         return view('member.form', compact('member'));
     }
 

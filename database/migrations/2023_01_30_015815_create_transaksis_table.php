@@ -21,7 +21,7 @@ return new class extends Migration
             $table->datetime('tgl');
             $table->datetime('batas_waktu');
             $table->datetime('tgl_bayar');
-            $table->datetime('biaya_tambahan');
+            $table->integer('biaya_tambahan');
             $table->integer('diskon');
             $table->enum('status',['baru','proses','selesai','diambil']);
             $table->enum('dibayar',['dibayar','belum_dibayar']);

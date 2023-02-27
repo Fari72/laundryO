@@ -95,6 +95,9 @@ class OutletController extends Controller
     public function edit($id)
     {
         $outlet = Outlet::find($id);
+        $outlet->name = $request->name;
+        $outlet->alamat = $request->alamat;
+        $outlet->tlp = $request->tlp;
         return view('outlet.form', compact('outlet'));
     }
 

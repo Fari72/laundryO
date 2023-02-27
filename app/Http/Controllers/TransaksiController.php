@@ -36,10 +36,10 @@ class TransaksiController extends Controller
         return datatables()
             ->of($transaksi)
             ->addIndexColumn()
-            ->addColumn('id_outlet', function($transaksi){
+            ->editColumn('id_outlet', function($transaksi){
                 return !empty($transaksi->outlet->name) ? $transaksi->outlet->name : '-';
               })
-            ->addColumn('id_member', function($transaksi){
+            ->editColumn('id_member', function($transaksi){
                 return !empty($transaksi->member->name) ? $transaksi->member->name : '-';
               })
             ->addColumn('aksi', function($transaksi){
@@ -131,6 +131,17 @@ class TransaksiController extends Controller
     public function edit($id)
     {
         $transaksi = Transaksi::find($id);
+        $transaksi->id_outlet = $request->id_outlet;
+        $transaksi->kode_invoice = $request->kode_invoice;
+        $transaksi->id_member = $request->id_member;
+        $transaksi->tgl = $request->tgl;
+        $transaksi->batas_waktu = $request->batas_waktu;
+        $transaksi->tgl_bayar = $request->tgl_bayar;
+        $transaksi->biaya_tambahan = $request->biaya_tambahan;
+        $transaksi->diskon = $request->diskon;
+        $transaksi->status = $request->status;
+        $transaksi->dibayar = $request->dibayar;
+        $transaksi->id_user = $request->id_user;
         return view('transaksi.form', compact('transaksi'));
     }
 
@@ -144,7 +155,17 @@ class TransaksiController extends Controller
     public function update(Request $request, $id)
     {
         $transaksi = Transaksi::find($id);
-        $transaksi->nama = $request->nama;
+        $transaksi->id_outlet = $request->id_outlet;
+        $transaksi->kode_invoice = $request->kode_invoice;
+        $transaksi->id_member = $request->id_member;
+        $transaksi->tgl = $request->tgl;
+        $transaksi->batas_waktu = $request->batas_waktu;
+        $transaksi->tgl_bayar = $request->tgl_bayar;
+        $transaksi->biaya_tambahan = $request->biaya_tambahan;
+        $transaksi->diskon = $request->diskon;
+        $transaksi->status = $request->status;
+        $transaksi->dibayar = $request->dibayar;
+        $transaksi->id_user = $request->id_user;
         $transaksi->update();
 
         return response()->json('Data Berhasil Disimpan');

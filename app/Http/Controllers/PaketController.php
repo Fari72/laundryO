@@ -28,7 +28,7 @@ class PaketController extends Controller
         return datatables()
             ->of($paket)
             ->addIndexColumn()
-            ->addColumn('id_outlet', function($paket){
+            ->editColumn('id_outlet', function($paket){
               return !empty($paket->outlet->name) ? $paket->outlet->name : '-';
             })
             ->addColumn('aksi', function($paket){
@@ -94,8 +94,7 @@ class PaketController extends Controller
     public function show($id)
     {
         $paket = Paket::find($id);
-        $outlet = Outlet::find($id);
-        return response()->json($paket, $outlet);
+        return response()->json($paket);
     }
 
     /**
@@ -107,8 +106,11 @@ class PaketController extends Controller
     public function edit($id)
     {
         $paket = Paket::find($id);
-        $outlet = Outlet::find($id);
-        return view('paket.form', compact('paket','outlet'));
+        $paket->id_outlet = $request->id_outlet;
+        $paket->jenis = $request->jenis;
+        $paket->nama_paket = $request->nama_paket;
+        $paket->harga = $request->harga;
+        return view('paket.form', compact('paket'));
     }
 
     /**
@@ -121,7 +123,6 @@ class PaketController extends Controller
     public function update(Request $request, $id)
     {
         $paket = Paket::find($id);
-        $outlet = Outlet::find($id);
         $paket->id_outlet = $request->id_outlet;
         $paket->jenis = $request->jenis;
         $paket->nama_paket = $request->nama_paket;

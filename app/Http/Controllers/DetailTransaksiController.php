@@ -30,10 +30,10 @@ class DetailTransaksiController extends Controller
         return datatables()
             ->of($detailtransaksi)
             ->addIndexColumn()
-            ->addColumn('id_transaksi', function($detailtransaksi){
+            ->editColumn('id_transaksi', function($detailtransaksi){
                 return !empty($detailtransaksi->transaksi->name) ? $detailtransaksi->transaksi->name : '-';
               })
-            ->addColumn('id_paket', function($detailtransaksi){
+            ->editColumn('id_paket', function($detailtransaksi){
             return !empty($detailtransaksi->paket->name) ? $detailtransaksi->paket->name : '-';
             })
             ->addColumn('aksi', function($detailtransaksi){
@@ -111,6 +111,10 @@ class DetailTransaksiController extends Controller
     public function edit($id)
     {
         $detailtransaksi = Detailtransaksi::find($id);
+        $detailtransaksi->id_transaksi = $request->id_transaksi;
+        $detailtransaksi->id_paket = $request->id_paket;
+        $detailtransaksi->qty = $request->qty;
+        $detailtransaksi->keterangan = $request->keterangan;
         return view('detailtransaksi.form', compact('detailtransaksi'));
     }
 
