@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\paket;
-use App\Models\outlet;
+use App\Models\Paket;
+use App\Models\Outlet;
 use Illuminate\Http\Request;
 use Validator;
 

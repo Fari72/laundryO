@@ -10,5 +10,8 @@ class outlet extends Model
     use HasFactory;
 
     protected $table = 'outlet';
-    protected $guarded = [];
+
+    protected $fillable = [
+        'name','alamat','tlp'
+    ];
 }
