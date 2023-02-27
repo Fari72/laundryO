@@ -111,11 +111,13 @@ class DetailTransaksiController extends Controller
     public function edit($id)
     {
         $detailtransaksi = Detailtransaksi::find($id);
+        $transaksi = Transaksi::find($id);
+        $paket = Paket::find($id);
         $detailtransaksi->id_transaksi = $request->id_transaksi;
         $detailtransaksi->id_paket = $request->id_paket;
         $detailtransaksi->qty = $request->qty;
         $detailtransaksi->keterangan = $request->keterangan;
-        return view('detailtransaksi.form', compact('detailtransaksi'));
+        return view('detailtransaksi.form', compact('detailtransaksi','transaksi','paket'));
     }
 
     /**

@@ -106,11 +106,12 @@ class PaketController extends Controller
     public function edit($id)
     {
         $paket = Paket::find($id);
+        $outlet = Outlet::find($id);
         $paket->id_outlet = $request->id_outlet;
         $paket->jenis = $request->jenis;
         $paket->nama_paket = $request->nama_paket;
         $paket->harga = $request->harga;
-        return view('paket.form', compact('paket'));
+        return view('paket.form', compact('paket','outlet'));
     }
 
     /**

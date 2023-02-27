@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\transaksi;
-use App\Models\detailtransaksi;
-use App\Models\paket;
 use App\Models\outlet;
 use App\Models\member;
 use App\Models\User;
@@ -136,6 +134,9 @@ class TransaksiController extends Controller
     public function edit($id)
     {
         $transaksi = Transaksi::find($id);
+        $outlet = Outlet::find($id);
+        $member = Member::find($id);
+        $user = User::find($id);
         $transaksi->id_outlet = $request->id_outlet;
         $transaksi->kode_invoice = $request->kode_invoice;
         $transaksi->id_member = $request->id_member;
@@ -147,7 +148,7 @@ class TransaksiController extends Controller
         $transaksi->status = $request->status;
         $transaksi->dibayar = $request->dibayar;
         $transaksi->id_user = $request->id_user;
-        return view('transaksi.form', compact('transaksi'));
+        return view('transaksi.form', compact('transaksi','outlet','member','user'));
     }
 
     /**
