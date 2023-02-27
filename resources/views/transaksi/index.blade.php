@@ -64,6 +64,8 @@
 
 @push('script')
     <script>
+
+        $('body').addClass('sidebar-mini')
         // Data Tables
         let table;
 

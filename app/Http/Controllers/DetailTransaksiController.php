@@ -133,6 +133,7 @@ class DetailTransaksiController extends Controller
         $detailtransaksi->qty = $request->qty;
         $detailtransaksi->keterangan = $request->keterangan;
         $detailtransaksi->update();
+        
         return response()->json('Data Berhasil Disimpan');
     }
 

@@ -41,7 +41,7 @@
                         <label class="mt-2" for="id_member">Nama Member</label>
                         <select type="text" class="form-control" name="id_member" id="id_member" value="{{ old('id_member')}}" class="form-control @error('id_member') is-invalid @enderror">
                             <option selected>pilih...</option>
-                            @foreach ($outlet as $item)
+                            @foreach ($member as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                             @error('id_member')
@@ -53,17 +53,17 @@
 
                         <div class="my-1">
                             <label class="mb-2" for="tgl">Tanggal</label>
-                            <input type="date" class="form-control" name="tgl" id="tgl" value="{{ old('tgl')}}" class="form-control @error('tgl') is-invalid @enderror">
+                            <input type="date" class="form-control" name="tgl" id="tgl">
                         </div>
                         
                         <div class="my-1">
                             <label class="mb-2" for="batas_waktu">Batas Waktu</label>
-                            <input type="date" class="form-control" name="batas_waktu" id="batas_waktu" value="{{ old('batas_waktu')}}" class="form-control @error('batas_waktu') is-invalid @enderror">
+                            <input type="date" class="form-control" name="batas_waktu" id="batas_waktu">
                         </div>
 
                         <div class="my-1">
                             <label class="mb-2" for="tgl_bayar">Tanggal Bayar</label>
-                            <input type="date" class="form-control" name="tgl_bayar" id="tgl_bayar" value="{{ old('tgl_bayar')}}" class="form-control @error('tgl_bayar') is-invalid @enderror">
+                            <input type="date" class="form-control" name="tgl_bayar" id="tgl_bayar">
                         </div>
                         
                         <div class="my-1">

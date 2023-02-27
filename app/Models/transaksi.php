@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Outlet;
-use App\Models\Paket;
 use App\Models\Member;
-use App\Models\Detailttansaksi;
 
 class transaksi extends Model
 {
@@ -29,16 +27,8 @@ class transaksi extends Model
     {
         return $this->belongsTo(Outlet::class);
     }
-    public function paket()
-    {
-        return $this->belongsTo(Paket::class);
-    }
     public function member()
     {
         return $this->belongsTo(Member::class);
-    }
-    public function detailtransaksi()
-    {
-        return $this->belongsTo(Detailtransaksi::class);
     }
 }
