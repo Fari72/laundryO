@@ -28,7 +28,7 @@ class PaketController extends Controller
         return datatables()
             ->of($paket)
             ->addIndexColumn()
-            ->editColumn('id_outlet', function($paket){
+            ->addColumn('id_outlet', function($paket){
               return !empty($paket->outlet->name) ? $paket->outlet->name : '-';
             })
             ->addColumn('aksi', function($paket){

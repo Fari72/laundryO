@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\outlet;
+use App\Models\Outlet;
 use Illuminate\Http\Request;
 use Validator;
 
