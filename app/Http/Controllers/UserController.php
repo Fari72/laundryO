@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Outlet;
-use App\Models\Transaksi;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -18,11 +16,28 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
-        $outlet = Outlet::all();
-        $transaksi = Transaksi::all();
 
         // dd($user);
-        return view('user.index', compact('user','outlet','transaksi'));
+        return view('user.index', compact('user'));
+    }
+
+    public function data()
+    {
+        $user = user::orderBy('id', 'desc')->get();
+
+        return datatables()
+            ->of($user)
+            ->addIndexColumn()
+            ->addColumn('aksi', function($user){
+                return '
+                <div class="btn-group">
+                    <button onclick="editData(`' .route('user.update', $user->id). '`)" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
+                    <button onclick="deleteData(`' .route('user.destroy', $user->id). '`)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                </div>
+                ';
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
     }
 
     /**
@@ -98,7 +113,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect('user');
     }
 
     public function profile($id)

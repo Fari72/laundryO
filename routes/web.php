@@ -24,22 +24,23 @@ Route::post('/simpanRegister', [AuthController::class, 'simpanRegister'])->name(
 Route::group(['middleware' => 'auth', 'checkRole:admin'], function () {
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
+  Route::get('/user/data', [UserController::class, 'data'])->name('user.data');
   Route::resource('/user', UserController::class);
   Route::get('/user/{id}/profile', [UserController::class, 'profile'])->name('user.profile');
   Route::post('/profile/{id}', [UserController::class, 'update'])->name('profile.update');
 });
 
-route::get('/detailtransaksi/data', [DetailtransaksiController::class, 'data'])->name('detailtransaksi.data');
-route::resource('/detailtransaksi', DetailtransaksiController::class);
+Route::get('/detailtransaksi/data', [DetailtransaksiController::class, 'data'])->name('detailtransaksi.data');
+Route::resource('/detailtransaksi', DetailtransaksiController::class);
 
-route::get('/transaksi/data', [TransaksiController::class, 'data'])->name('transaksi.data');
-route::resource('/transaksi', TransaksiController::class);
+Route::get('/transaksi/data', [TransaksiController::class, 'data'])->name('transaksi.data');
+Route::resource('/transaksi', TransaksiController::class);
 
-route::get('/member/data', [MemberController::class, 'data'])->name('member.data');
-route::resource('/member', MemberController::class);
+Route::get('/member/data', [MemberController::class, 'data'])->name('member.data');
+Route::resource('/member', MemberController::class);
 
-route::get('/outlet/data', [OutletController::class, 'data'])->name('outlet.data');
-route::resource('/outlet', OutletController::class);
+Route::get('/outlet/data', [OutletController::class, 'data'])->name('outlet.data');
+Route::resource('/outlet', OutletController::class);
 
-route::get('/paket/data', [PaketController::class, 'data'])->name('paket.data');
-route::resource('/paket', PaketController::class);
+Route::get('/paket/data', [PaketController::class, 'data'])->name('paket.data');
+Route::resource('/paket', PaketController::class);
