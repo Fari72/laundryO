@@ -15,6 +15,11 @@ data-backdrop="static" data-keyboard="false">
                     @method('PUT')
 
                     <div class="form-group">
+                        <label for="name">Nama</label>
+                        <input type="text" class="form-control" name="name" id="name">
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" email="email" id="email">
                     </div>

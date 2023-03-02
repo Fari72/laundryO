@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use validator;
+use Str;
 
 class UserController extends Controller
 {
@@ -47,7 +49,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.form');
     }
 
     /**
@@ -58,7 +60,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|alpha',
+            'email' => 'required',
+            'password' => 'required',
+            'role_id' => 'required'
+        ]);
+
+       $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => bcrypt($request->password),
+        'remember_token' => Str::random(20),
+       ]);
+
+       return response()->json([
+        'success' => true,
+        'massage' => 'Data berhasil disimpan',
+        'data' => $user
+       ]);
     }
 
     /**
@@ -69,7 +89,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return response()->json($user);
     }
 
     /**
@@ -80,7 +101,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('user.form', compact('user')); 
     }
 
     /**

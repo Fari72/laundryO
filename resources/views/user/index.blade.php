@@ -5,16 +5,19 @@
 @section('content')
   <div class="card">
     <h1>User</h1>
-
+    
     <div class="section-header-breadcrumb">
       <div class="breadcrump-item {{ active('user') }}">
-        
       </div>
     </div>
   </div>
-
   <div class="section-body">
     <div class="card">
+      <div class="col-2 col-md-2 col-lg-12">
+        <button type="button" onclick="addForm('{{ route('user.store') }}')" class="btn btn-primary shadow-sm rounded-pill">
+                <i class="fa fa-plus"></i> Tambah
+        </button>
+    </div>
       <div class="card-body">
         <table class="table table-hover">
           <thead>
@@ -48,6 +51,7 @@
               </tr>
             @endforeach
           </tbody>
+
         </table>
       </div>
     </div>
@@ -67,6 +71,8 @@
                     url: '{{ route('user.data') }}'
                 },
                 columns: [
+                    {data: 'name'}
+                    {data: 'email'}
                     {data: 'aksi'}
                 ]
             });
@@ -113,7 +119,8 @@
             $('#modalForm [name=_method]').val('put');
             $.get (url)
                 .done((response) => {
-                    // $('#modalForm [name=name]').val(response.name); example
+                    $('#modalForm [name=name]').val(response.name);
+                    $('#modalForm [name=email]').val(response.email);
                     // console.log(response.nama);
                 })
                 .fail((errors) => {

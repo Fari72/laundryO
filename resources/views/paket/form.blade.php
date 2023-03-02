@@ -18,8 +18,8 @@
                             <label class="mb-2" for="id_outlet">Outlet</label>
                             <select type="text" class="form-control" name="id_outlet" id="id_outlet" value="{{ old('id_outlet')}}" class="form-control @error('id_outlet') is-invalid @enderror">
                                 <option selected>pilih...</option>
-                                @foreach ($outlet as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @foreach ($outlet as $outlet)
+                                    <option value="{{$outlet->id}}">{{$outlet->name}}</option>
                                 @endforeach
                                 @error('id_outlet')
                                 <div class="text-danger">
