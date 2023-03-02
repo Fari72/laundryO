@@ -72,7 +72,7 @@
               </div>
             </div>
             <div class="mt-5 text-muted text-center">
-              Belum Punya akun? <a href="{{route('register')}}">Daftar</a>
+              {{-- Belum Punya akun? <a href="{{route('register')}}">Daftar</a> --}}
             </div>
           </div>
         </div>
