@@ -40,8 +40,8 @@
                                     <td scope="col">Tanggal pesan</td>                                   
                                     <td scope="col">Batas Waktu</td>                                   
                                     <td scope="col">Tanggal Bayar</td>                                   
-                                    <td scope="col">Biaya Tambahan</td>                                   
-                                    <td scope="col">Diskon</td>                                   
+                                    {{-- <td scope="col">Biaya Tambahan</td>                                   
+                                    <td scope="col">Diskon</td> --}}
                                     <td scope="col">Status</td>                                   
                                     <td scope="col">Dibayar</td>                                   
                                     <td scope="col">User</td>                                   
@@ -84,8 +84,8 @@
                     {data: 'tgl'},
                     {data: 'batas_waktu'},
                     {data: 'tgl_bayar'},
-                    {data: 'biaya_tambahan'},
-                    {data: 'diskon'},
+                    // {data: 'biaya_tambahan'},
+                    // {data: 'diskon'},
                     {data: 'status'},
                     {data: 'dibayar'},
                     {data: 'id_user'},

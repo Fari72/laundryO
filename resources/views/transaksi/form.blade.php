@@ -66,7 +66,7 @@
                                 <input type="date" class="form-control" name="tgl_bayar" id="tgl_bayar">
                             </div>
                             
-                            <div class="my-1">
+                            {{-- <div class="my-1">
                                 <label class="mb-2" for="biaya_tambahan">Biaya Tambahan</label>
                                 <input type="number" class="form-control" name="biaya_tambahan" id="biaya_tambahan" value="{{ old('biaya_tambahan')}}" class="form-control @error('biaya_tambahan') is-invalid @enderror">
                                 @error('biaya_tambahan')
@@ -74,9 +74,9 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div>
+                            </div> --}}
 
-                            <div class="my-1">
+                            {{-- <div class="my-1">
                                 <label class="mb-2" for="diskon">Diskon</label>
                                 <input type="number" class="form-control" name="diskon" id="diskon" value="{{ old('diskon')}}" class="form-control @error('diskon') is-invalid @enderror">
                                 @error('diskon')
@@ -84,7 +84,7 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div>
+                            </div> --}}
 
                             <div class="my-1">
                                 <label class="mb-2" for="status">Status</label>
