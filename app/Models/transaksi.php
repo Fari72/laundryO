@@ -25,10 +25,10 @@ class transaksi extends Model
     }
     public function outlet()
     {
-        return $this->belongsTo(Outlet::class);
+        return $this->belongsTo('App\Models\Outlet', 'id_outlet', 'id');
     }
     public function member()
     {
-        return $this->belongsTo(Member::class);
+        return $this->belongsTo('App\Models\Member', 'id_member', 'id');
     }
 }

@@ -17,10 +17,10 @@ class detailtransaksi extends Model
     ];
     public function paket()
     {
-        return  $this->belongsTo(Paket::class);
+        return  $this->belongsTo('App\Models\Paket', 'id_paket', 'id');
     }
     public function transaksi()
     {
-        return $this->belongsTo(Transaksi::class);
+        return $this->belongsTo('App\Models\Transaksi', 'id_transaksi', 'id');
     }
 }

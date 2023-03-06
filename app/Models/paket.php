@@ -18,6 +18,6 @@ class paket extends Model
     
     public function outlet()
     {
-        return $this->belongsTo(Outlet::class);
+        return $this->belongsTo('App\Models\Outlet', 'id_outlet', 'id');
     }
 }
