@@ -19,10 +19,6 @@ class transaksi extends Model
         'dibayar','id_user'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
     public function outlet()
     {
         return $this->belongsTo('App\Models\Outlet', 'id_outlet', 'id');
@@ -30,5 +26,9 @@ class transaksi extends Model
     public function member()
     {
         return $this->belongsTo('App\Models\Member', 'id_member', 'id');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'id_user', 'id');
     }
 }

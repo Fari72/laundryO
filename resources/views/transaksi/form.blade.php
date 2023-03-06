@@ -18,8 +18,8 @@
                             <label class="mb-2" for="id_outlet">Outlet</label>
                             <select type="text" class="form-control" name="id_outlet" id="id_outlet" value="{{ old('id_outlet')}}" class="form-control @error('id_outlet') is-invalid @enderror">
                                 <option selected>pilih...</option>
-                                @foreach ($outlet as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @foreach ($outlet as $outlet)
+                                    <option value="{{$outlet->id}}">{{$outlet->name}}</option>
                                 @endforeach
                                 @error('id_outlet')
                                 <div class="text-danger">
@@ -41,8 +41,8 @@
                         <label class="mt-2" for="id_member">Nama Member</label>
                         <select type="text" class="form-control" name="id_member" id="id_member" value="{{ old('id_member')}}" class="form-control @error('id_member') is-invalid @enderror">
                             <option selected>pilih...</option>
-                            @foreach ($member as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
+                            @foreach ($member as $member)
+                                <option value="{{$member->id}}">{{$member->name}}</option>
                             @endforeach
                             @error('id_member')
                             <div class="text-danger">
@@ -120,8 +120,8 @@
                     <label class="mt-2" for="id_user">Nama Pelanggan</label>
                         <select type="integer" class="form-control" name="id_user" id="id_user" class="form-control @error('id_user') is-invalid @enderror">
                             <option selected>Pilih...</option>
-                            @foreach($user as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            @foreach($user as $user)
+                            <option value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach
                         @error('id_user')
                             <div class="text-danger">

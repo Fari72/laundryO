@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Detailtransaksi;
+use App\Models\DetailTransaksi;
 use App\Models\Transaksi;
 use App\Models\Paket;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class DetailTransaksiController extends Controller
      */
     public function index()
     {
-        $detailtransaksi = Detailtransaksi::all();
+        $detailtransaksi = DetailTransaksi::all();
         $transaksi = Transaksi::all();
         $paket = Paket::all();
         return view('detailtransaksi.index', compact('detailtransaksi','transaksi','paket'));
@@ -25,7 +25,7 @@ class DetailTransaksiController extends Controller
 
     public function data()
     {
-        $detailtransaksi = Detailtransaksi::orderBy('id', 'desc')->get();
+        $detailtransaksi = DetailTransaksi::orderBy('id', 'desc')->get();
 
         return datatables()
             ->of($detailtransaksi)
@@ -76,7 +76,7 @@ class DetailTransaksiController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $detailtransaksi = Detailtransaksi::create([
+        $detailtransaksi = DetailTransaksi::create([
             'id_transaksi' => $request->id_transaksi,
             'id_paket' => $request->id_paket,
             'qty' => $request->qty,
@@ -98,7 +98,7 @@ class DetailTransaksiController extends Controller
      */
     public function show($id)
     {
-        $detailtransaksi = Detailtransaksi::find($id);
+        $detailtransaksi = DetailTransaksi::find($id);
         return response()->json($detailtransaksi);
     }
 
@@ -110,7 +110,7 @@ class DetailTransaksiController extends Controller
      */
     public function edit($id)
     {
-        $detailtransaksi = Detailtransaksi::find($id);
+        $detailtransaksi = DetailTransaksi::find($id);
         $transaksi = Transaksi::find($id);
         $paket = Paket::find($id);
         $detailtransaksi->id_transaksi = $request->id_transaksi;
@@ -129,7 +129,7 @@ class DetailTransaksiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $detailtransaksi = Detailtransaksi::find($id);
+        $detailtransaksi = DetailTransaksi::find($id);
         $detailtransaksi->id_transaksi = $request->id_transaksi;
         $detailtransaksi->id_paket = $request->id_paket;
         $detailtransaksi->qty = $request->qty;
@@ -147,7 +147,7 @@ class DetailTransaksiController extends Controller
      */
     public function destroy($id)
     {
-        $detailtransaksi = Detailtransaksi::find($id);
+        $detailtransaksi = DetailTransaksi::find($id);
         $detailtransaksi->delete();
     }
 }

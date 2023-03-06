@@ -36,7 +36,7 @@
                                     <td scope="col" style="width: 50px;">No</td>
                                     <td scope="col">Transaksi</td>
                                     <td scope="col">Paket</td>
-                                    <td scope="col">QTY</td>                                   
+                                    <td scope="col">Jumlah</td>                                   
                                     <td scope="col">Keterangan</td>                                   
                                     <td scope="col" style="width: 84px;">Aksi</td>
                                 </tr>
@@ -103,7 +103,7 @@
 
         function addForm(url){
             $('#modalForm').modal('show');
-            $('#modalForm .modal-title').text('Tambah Data detailtransaksi');
+            $('#modalForm .modal-title').text('Tambah Data Laporan');
             $('#modalForm form')[0].reset();
 
             $('#modalForm form').attr('action', url);
@@ -112,7 +112,7 @@
 
         function editData(url){
             $('#modalForm').modal('show');
-            $('#modalForm .modal-title').text('Edit Data detailtransaksi');
+            $('#modalForm .modal-title').text('Edit Data Laporan');
             
             $('#modalForm form')[0].reset();
             $('#modalForm form').attr('action', url);
