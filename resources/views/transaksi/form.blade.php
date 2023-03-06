@@ -117,7 +117,7 @@
                             </div>
 
                             <label class="mt-2" for="id_user">Nama Pelanggan</label>
-                                <select type="integer" class="form-control" name="id_user" id="id_user" class="form-control @error('id_user') is-invalid @enderror">
+                                <select type="name" class="form-control" name="id_user" id="id_user" class="form-control @error('id_user') is-invalid @enderror">
                                     <option selected>Pilih...</option>
                                     @foreach($user as $user)
                                     <option value="{{$user->id}}">{{$user->name}}</option>
