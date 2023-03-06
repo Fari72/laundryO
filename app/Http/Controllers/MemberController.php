@@ -61,7 +61,7 @@ class MemberController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'alamat' => 'required',
-            'jenis_kelamin' => 'required',
+            'jenis_kelamin' => 'required',['laki-laki','perempuan'],
             'tlp' => 'required|numeric',
         ]);
 
