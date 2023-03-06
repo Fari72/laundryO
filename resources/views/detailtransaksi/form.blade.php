@@ -53,7 +53,7 @@
 
                         <div class="my-1">
                             <label class="mb-2" for="keterangan">Keterangan</label>
-                            <input type="text" class="form-control" name="keterangan" id="keterangan" class="form-control @error('keterangan') is-invalid @enderror">
+                            <input type="text" class="form-control" name="keterangan" id="keterangan" value="{{ old('keterangan')}}" class="form-control @error('keterangan') is-invalid @enderror">
                             @error('keterangan')
                                 <div class="text-danger">
                                     {{ $message }}
