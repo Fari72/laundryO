@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth', 'checkRole:admin'], function () {
 });
 
 Route::get('/detailtransaksi/data', [DetailtransaksiController::class, 'data'])->name('detailtransaksi.data');
-Route::resource('/detailtransaksi', DetailtransaksiController::class);
+// Route::resource('/detailtransaksi', DetailtransaksiController::class);
 
 Route::get('/transaksi/data', [TransaksiController::class, 'data'])->name('transaksi.data');
 Route::resource('/transaksi', TransaksiController::class);

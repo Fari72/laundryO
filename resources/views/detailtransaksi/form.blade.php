@@ -13,7 +13,6 @@
                     @method('PUT')
                     <div class="form-group">
 
-                        {{-- Add Mapel --}}
                         <div class="my-1">
                             <label class="mb-2" for="id_transaksi">Transaksi</label>
                             <select type="text" class="form-control" name="id_transaksi" id="id_transaksi" value="{{ old('id_transaksi')}}" class="form-control @error('id_transaksi') is-invalid @enderror">
