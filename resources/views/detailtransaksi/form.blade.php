@@ -19,7 +19,7 @@
                             <select type="text" class="form-control" name="id_transaksi" id="id_transaksi" value="{{ old('id_transaksi')}}" class="form-control @error('id_transaksi') is-invalid @enderror">
                                 <option selected>pilih...</option>
                                 @foreach ($transaksi as $transaksi)
-                                    <option value="{{$transaksi->id}}">{{$transaksi->name}}</option>
+                                    <option value="{{$transaksi->id}}">{{$transaksi->id_user}}</option>
                                 @endforeach
                                 @error('id_transaksi')
                                 <div class="text-danger">
@@ -34,7 +34,7 @@
                             <select type="text" class="form-control" name="id_paket" id="id_paket" value="{{ old('id_paket')}}" class="form-control @error('id_paket') is-invalid @enderror">
                                 <option selected>pilih...</option>
                                 @foreach ($paket as $paket)
-                                    <option value="{{$paket->id}}">{{$paket->name}}</option>
+                                    <option value="{{$paket->id}}">{{$paket->nama_paket}}</option>
                                 @endforeach
                                 @error('id_paket')
                                 <div class="text-danger">
